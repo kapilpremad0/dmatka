@@ -57,7 +57,7 @@
                 </li>
 
             
-                <li class=" nav-item {{ Request::routeIs('admin.users.index') ? 'active' : '' }}"><a
+                <li class=" nav-item {{ Request::routeIs('admin.users.index','admin.users.show') ? 'active' : '' }}"><a
                     class="d-flex align-items-center" href="{{ route('admin.users.index') }}"><i
                         data-feather="users"></i><span class="menu-title text-truncate"
                         data-i18n="Dashboards">User</span><span
