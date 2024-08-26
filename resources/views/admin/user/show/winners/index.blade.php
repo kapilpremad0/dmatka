@@ -23,44 +23,34 @@
                     <div class="col-12">
                         <div class="card card-company-table">
                             <div class="card-header">
-                                
-                                <div class="col-md-3">
-                                    <label for="">Date From</label>
-                                    <input type="date" class="form-control" id="date_from" value="{{ request()->input('date_from') }}">
-                                </div>
-
-                                <div class="col-md-3">
-                                    <label for="">Date To</label>
-                                    <input type="date" class="form-control" id="date_to" value="{{ request()->input('date_from') }}">
-                                </div>
-
-                                <div class="col-md-2" style="    align-self: end;"> 
-                                    
-                                </div>
-
-                                <div class="col-md-3" style="text-align: end">
-                                    <h4 class="card-title">Wallet Amount :  {{ $user->wallet_amount }}</h4>
-                                </div>
+                                {{-- <h4 class="card-title"></h4> --}}
+                                {{-- <div class="col-md-3" style="text-align: end">
+                                    <input type="text" id="searchInput" class="form-control" placeholder="Search">
+                                </div> --}}
                             </div>
                             <div class="table-responsive" id="table-responsive">
                                 <table class="table mb-0">
                                     <thead class="table-dark">
                                         <tr>
                                             <th scope="col" >#</th>
-                                            <th scope="col" >Description</th>
-                                            <th scope="col" >Amount</th>
+                                            <th scope="col" >Game</th>
+                                            <th scope="col" >Bid Number</th>
+                                            <th scope="col" >Bid Amount</th>
                                             <th scope="col" >Type</th>
+                                            <th scope="col" >Winning Amount</th>
                                             <th>Created at</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @php  $i = ($transactions->currentPage() - 1) * $transactions->perPage() + 1; @endphp
+                                        @php  $i = ($winners->currentPage() - 1) * $winners->perPage() + 1; @endphp
                                         @foreach ($data as $item)
                                             <tr>
                                                 <td >{{ $i }}</td>
-                                                <td>{{ $item->description ?? ''}}</td>
+                                                <td>{{ $item->game->name ?? ''}}</td>
+                                                <td>{{ $item->bid->number ?? ''}}</td>
+                                                <td>₹{{ $item->bid->amount ?? 0 }}</td>
+                                                <td class="uppercase">{{ $item->bid->type ?? ''}}</td>
                                                 <td><strong>₹{{ $item->amount ?? 0 }}</strong></td>
-                                                <td class="uppercase">{{ $item->type ?? ''}}</td>
                                                 <td>{{ $item->created_at ?? '' }}</td>
                                             </tr>
                                             @php
@@ -70,7 +60,7 @@
                                         
                                     </tbody>
                                 </table>
-                                @include('admin._pagination', ['data' => $transactions])
+                                @include('admin._pagination', ['data' => $winners])
                             </div>
                             
                             {{-- <div class="table-responsive">
@@ -98,17 +88,15 @@
 
 <script>
     $(document).ready(function () {
-        $('#date_from ,#date_to').on('input', function () {
-            fetch_data();
+        $('#searchInput').on('input', function () {
+            fetch_data($(this).val());
         });
 
-        function fetch_data() {
-            var date_from = $('#date_from').val();
-            var date_to = $('#date_to').val();
+        function fetch_data(query = '') {
             $.ajax({
                 url: "",
                 method: 'GET',
-                data: {date_from: date_from , date_to:date_to},
+                data: {search: query},
                 dataType: 'html',
                 success: function (data) {
                     $('#table-responsive').html(data);

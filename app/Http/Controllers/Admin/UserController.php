@@ -12,6 +12,8 @@ use App\Http\Resources\Admin\UserResource;
 use App\Http\Resources\Api\WalletResource;
 use App\Models\Bid;
 use App\Models\Wallet;
+use App\Models\Winner;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -90,10 +92,34 @@ class UserController extends Controller
     }
 
 
-    function transactions($id){
-        $transactions = Wallet::where('user_id',$id)->latest()->paginate(10);
+    function transactions($id , Request $request){
+        $date_from = $request->date_from;
+        $date_to = $request->date_to;
+        $transactions = Wallet::where('user_id',$id);
+
+        $dateFrom = $request->input('date_from');
+        $dateTo = $request->input('date_to', now()->toDateString()); // Default to current date if date_to is empty
+        $dateTo = Carbon::parse($dateTo)->addDay()->toDateString(); // Add one day
+        if ($dateFrom && $dateTo) {
+            $transactions->whereBetween('created_at', [$dateFrom, $dateTo]);
+        }elseif ($dateTo) {
+            $transactions->whereDate('created_at', '<=', $dateTo);
+        }
+
+        $transactions = $transactions->latest()->paginate(10);
+
         $data = json_decode(json_encode(TransactionResource::collection($transactions)));
         $user = User::find($id);
+        $user['wallet_amount'] = User::walletAmount($id);
+
+        $transactions->appends([
+            'date_to' => $request->date_to,
+            'date_from' => $request->date_from,
+        ]);
+
+        if ($request->ajax()) {
+            return view('admin.user.show.transactions.pagination', compact('transactions','data'))->render();
+        }
         return view('admin.user.show.transactions.index',compact('user','transactions','data'));
     }
 
@@ -102,6 +128,13 @@ class UserController extends Controller
         $data = json_decode(json_encode(BidResource::collection($bids)));
         $user = User::find($id);
         return view('admin.user.show.bids.index',compact('user','bids','data'));
+    }
+
+    function winners($id){
+        $winners = Winner::where('user_id',$id)->with('game','bid')->latest()->paginate(10);
+        $data = json_decode(json_encode(BidResource::collection($winners)));
+        $user = User::find($id);
+        return view('admin.user.show.winners.index',compact('user','winners','data'));
     }
 
 

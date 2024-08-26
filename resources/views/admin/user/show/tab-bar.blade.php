@@ -22,7 +22,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link {{ Request::routeIs('admin.users.withdrawal') ? 'active' : '' }}" href="">
+        <a class="nav-link {{ Request::routeIs('admin.users.winners') ? 'active' : '' }}" href="{{ route('admin.users.winners',$user->id) }}">
             <i data-feather="bookmark" class="font-medium-3 me-50"></i>
             <span class="fw-bold">Winner</span>
         </a>
