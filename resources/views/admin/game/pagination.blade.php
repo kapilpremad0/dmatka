@@ -98,3 +98,7 @@
     </tbody>
 </table>
 @include('admin._pagination', ['data' => $games])
+
+<script>
+    feather.replace();
+</script>

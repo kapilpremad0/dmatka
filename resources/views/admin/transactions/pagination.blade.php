@@ -47,3 +47,8 @@
     </tbody>
 </table>
 @include('admin._pagination', ['data' => $transactions])
+
+
+<script>
+    feather.replace();
+</script>

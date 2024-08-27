@@ -30,3 +30,7 @@
     </tbody>
 </table>
 @include('admin._pagination', ['data' => $winners])
+
+<script>
+    feather.replace();
+</script>

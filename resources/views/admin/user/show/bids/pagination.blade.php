@@ -29,3 +29,7 @@
 </table>
 @include('admin._pagination', ['data' => $bids])
 
+<script>
+    feather.replace();
+</script>
+

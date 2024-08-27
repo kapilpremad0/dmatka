@@ -52,10 +52,37 @@
                     <div class="col-12">    
                         <div class="card card-company-table">
                             <div class="card-header">
-                                <h4 class="card-title"></h4>
-                                {{-- <div class="col-md-3" style="text-align: end">
-                                    <input type="text" id="searchInput" class="form-control" placeholder="Search">
-                                </div> --}}
+
+                                <div class="col-md-2">
+                                    <label for="">Date From</label>
+                                    <input type="date" class="form-control" id="date_from" value="{{ request()->input('date_from') }}">
+                                </div>
+
+                                <div class="col-md-2">
+                                    <label for="">Date To</label>
+                                    <input type="date" class="form-control" id="date_to" value="{{ request()->input('date_to') }}">
+                                </div>
+
+                                <div class="col-md-3">
+                                    <label for="">Game</label>
+                                    <select name="game_id" id="game_id" class="form-select select2">
+                                        <option value="">(Select Game)</option>
+                                        @foreach ($games as $item)
+                                            <option value="{{ $item->id }}" {{ request()->game_id == $item->id ? 'selected' : '' }}>{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <label for="">User</label>
+                                    <select name="user_id" id="user_id" class="form-select select2">
+                                        <option value="">(Select User)</option>
+                                        @foreach ($users as $item)
+                                            <option value="{{ $item->id }}" {{ request()->user_id == $item->id ? 'selected' : '' }}>{{ $item->name }} ({{ $item->mobile }})</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
                             </div>
                             <div class="table-responsive" id="table-responsive">
                                 <table class="table mb-0">
@@ -130,15 +157,19 @@
 
 <script>
     $(document).ready(function () {
-        $('#searchInput').on('input', function () {
+        $('#date_from , #date_to ,#game_id , #user_id').on('input', function () {
             fetch_data($(this).val());
         });
 
         function fetch_data(query = '') {
+            var date_from = $('#date_from').val();
+            var date_to = $('#date_to').val();
+            var game_id = $('#game_id').val();
+            var user_id = $('#user_id').val();
             $.ajax({
-                url: "",
+                url: "?page=1",
                 method: 'GET',
-                data: {search: query},
+                data: {date_from: date_from , date_to:date_to ,game_id:game_id , user_id:user_id},
                 dataType: 'html',
                 success: function (data) {
                     $('#table-responsive').html(data);

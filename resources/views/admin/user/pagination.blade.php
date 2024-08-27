@@ -87,3 +87,7 @@
     </tbody>
 </table>
 @include('admin._pagination', ['data' => $users])
+
+<script>
+    feather.replace();
+</script>
