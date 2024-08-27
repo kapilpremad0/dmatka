@@ -23,10 +23,20 @@
                     <div class="col-12">
                         <div class="card card-company-table">
                             <div class="card-header">
-                                {{-- <h4 class="card-title"></h4> --}}
-                                {{-- <div class="col-md-3" style="text-align: end">
-                                    <input type="text" id="searchInput" class="form-control" placeholder="Search">
-                                </div> --}}
+                                <div class="col-md-3">
+                                    <label for="">Date From</label>
+                                    <input type="date" class="form-control" id="date_from" value="{{ request()->input('date_from') }}">
+                                </div>
+
+                                <div class="col-md-3">
+                                    <label for="">Date To</label>
+                                    <input type="date" class="form-control" id="date_to" value="{{ request()->input('date_to') }}">
+                                </div>
+
+
+                                <div class="col-md-5">
+
+                                </div>
                             </div>
                             <div class="table-responsive" id="table-responsive">
                                 <table class="table mb-0">
@@ -47,7 +57,7 @@
                                                 <td >{{ $i }}</td>
                                                 <td>{{ $item->game->name ?? ''}}</td>
                                                 <td>{{ $item->number ?? ''}}</td>
-                                                <td>₹{{ $item->amount ?? 0 }}</td>
+                                                <td><strong>₹{{ $item->amount ?? 0 }}</strong></td>
                                                 <td class="uppercase">{{ $item->type ?? ''}}</td>
                                                 <td>{{ $item->created_at ?? '' }}</td>
                                             </tr>
@@ -86,15 +96,17 @@
 
 <script>
     $(document).ready(function () {
-        $('#searchInput').on('input', function () {
-            fetch_data($(this).val());
+        $('#date_to ,#date_from').on('input', function () {
+            fetch_data();
         });
 
-        function fetch_data(query = '') {
+        function fetch_data() {
+            var date_from = $('#date_from').val();
+            var date_to = $('#date_to').val();
             $.ajax({
-                url: "",
+                url: "?page=1",
                 method: 'GET',
-                data: {search: query},
+                data: {date_from: date_from , date_to:date_to},
                 dataType: 'html',
                 success: function (data) {
                     $('#table-responsive').html(data);
