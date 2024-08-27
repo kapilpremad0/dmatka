@@ -16,7 +16,14 @@
                 <td >{{ $i }}</td>
                 <td>{{ $item->description ?? ''}}</td>
                 <td><strong>₹{{ $item->amount ?? 0 }}</strong></td>
-                <td class="uppercase">{{ $item->type ?? ''}}</td>
+                <td>
+                    @if ($item->type == 'credit')
+                        
+                        <span class="badge bg-light-success">Credit</span>
+                    @else
+                        <span class="badge bg-light-danger">Debit</span>
+                    @endif
+                </td>
                 <td>{{ $item->created_at ?? '' }}</td>
             </tr>
             @php

@@ -68,6 +68,12 @@
         .uppercase{
             text-transform: uppercase;
         }
+        .debit {
+            color: red;
+        }
+        .credit {
+            color: green;
+        }
     </style>
 </head>
 <!-- END: Head-->

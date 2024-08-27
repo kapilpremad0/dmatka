@@ -94,7 +94,7 @@
 
         function fetch_data(query = '') {
             $.ajax({
-                url: "",
+                url: "?page=1",
                 method: 'GET',
                 data: {search: query},
                 dataType: 'html',

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\StoreTransactionRequest;
 use App\Http\Resources\Admin\TransactionResource;
 use App\Models\Wallet;
 use Illuminate\Http\Request;
@@ -30,9 +31,11 @@ class TransactionController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreTransactionRequest $request)
     {
-        //
+        $data  = $request->validated();
+        Wallet::create($data);
+        session()->flash('success','Transaction created successfully');
     }
 
     /**
