@@ -27,8 +27,9 @@ class UserController extends Controller
         $query_search = $request->input('search');
 
         $users = User::when($query_search, function ($query) use ($query_search) {
-            $query->where('first_name', 'like', '%' . $query_search . '%');
-            $query->Orwhere('last_name', 'like', '%' . $query_search . '%');
+            $query->where('name', 'like', '%' . $query_search . '%');
+            $query->Orwhere('mobile', 'like', '%' . $query_search . '%');
+            $query->Orwhere('email', 'like', '%' . $query_search . '%');
 
         })->where('role',User::$user)->latest()->paginate(10);
 

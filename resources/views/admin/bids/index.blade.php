@@ -52,10 +52,36 @@
                     <div class="col-12">
                         <div class="card card-company-table">
                             <div class="card-header">
-                                <h4 class="card-title"></h4>
-                                {{-- <div class="col-md-3" style="text-align: end">
-                                    <input type="text" id="searchInput" class="form-control" placeholder="Search">
-                                </div> --}}
+                                <div class="col-md-2">
+                                    <label for="">Date From</label>
+                                    <input type="date" class="form-control" id="date_from" value="{{ request()->input('date_from') }}">
+                                </div>
+
+                                <div class="col-md-2">
+                                    <label for="">Date To</label>
+                                    <input type="date" class="form-control" id="date_to" value="{{ request()->input('date_to') }}">
+                                </div>
+
+                                <div class="col-md-3">
+                                    <label for="">Game</label>
+                                    <select name="game_id" id="game_id" class="form-select select2">
+                                        <option value="">(Select Game)</option>
+                                        @foreach ($games as $item)
+                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <label for="">User</label>
+                                    <select name="user_id" id="user_id" class="form-select select2">
+                                        <option value="">(Select User)</option>
+                                        @foreach ($users as $item)
+                                            <option value="{{ $item->id }}">{{ $item->name }} ({{ $item->mobile }})</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                
                             </div>
                             <div class="table-responsive" id="table-responsive">
                                 <table class="table mb-0">
@@ -68,7 +94,6 @@
                                             <th scope="col" >Bid Amount</th>
                                             <th scope="col" >Type</th>
                                             <th>Created at</th>
-                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -90,54 +115,9 @@
                                                 </td>
                                                 <td>{{ $item->game->name ?? ''}}</td>
                                                 <td>{{ $item->number ?? ''}}</td>
-                                                <td>₹{{ $item->amount ?? 0 }}</td>
+                                                <td><strong>₹{{ $item->amount ?? 0 }}</strong></td>
                                                 <td class="uppercase">{{ $item->type ?? ''}}</td>
                                                 <td>{{ $item->created_at ?? '' }}</td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0" data-bs-toggle="dropdown">
-                                                            <i data-feather="more-vertical"></i>
-                                                        </button>
-                                                        <div class="dropdown-menu dropdown-menu-end">
-                                                            
-                                                            <a class="dropdown-item" href="{{route('admin.bids.edit',$item->id)}}">
-                                                                <i data-feather="edit-2" class="me-50"></i>
-                                                                <span>Edit</span>
-                                                            </a>
-                                                            
-                                                            {{-- <a class="dropdown-item" href="{{route('admin.bids.show',$item->id)}}">
-                                                                <i data-feather="eye" class="me-50"></i>
-                                                                <span>View</span>
-                                                            </a> --}}
-                                                            <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#danger_ke{{ $item->id }}">
-                                                                <i data-feather="trash" class="me-50"></i>
-                                                                <span>Delete</span>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="modal fade modal-danger text-start" id="danger_ke{{ $item->id }}" tabindex="-1" aria-labelledby="myModalLabel120" aria-hidden="true">
-                                                        <div class="modal-dialog modal-dialog-centered">
-                                                            
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title" id="myModalLabel120">Delete</h5>
-                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        Are you sure you want to delete !
-                                                                    </div>
-                                                                    <form action="{{route('admin.bids.destroy',$item->id)}}" method="POST">
-                                                                        @csrf
-                                                                        @method('delete')
-                                                                        <div class="modal-footer">
-                                                                            <button type="submit" class="btn btn-danger">Delete</button>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
                                             </tr>
                                             @php
                                                 $i++;
@@ -148,13 +128,6 @@
                                 </table>
                                 @include('admin._pagination', ['data' => $bids])
                             </div>
-                            
-                            {{-- <div class="table-responsive">
-                                <table class="table mb-0">
-                                    <!-- ... (your table structure) ... -->
-                                </table>
-                                {{ $bids->links('admin._pagination') }}
-                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -174,15 +147,19 @@
 
 <script>
     $(document).ready(function () {
-        $('#searchInput').on('input', function () {
+        $('#date_from , #date_to ,#game_id , #user_id').on('input', function () {
             fetch_data($(this).val());
         });
 
         function fetch_data(query = '') {
+            var date_from = $('#date_from').val();
+            var date_to = $('#date_to').val();
+            var game_id = $('#game_id').val();
+            var user_id = $('#user_id').val();
             $.ajax({
-                url: "",
+                url: "?page=1",
                 method: 'GET',
-                data: {search: query},
+                data: {date_from: date_from , date_to:date_to ,game_id:game_id , user_id:user_id},
                 dataType: 'html',
                 success: function (data) {
                     $('#table-responsive').html(data);
