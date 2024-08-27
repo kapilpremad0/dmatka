@@ -47,6 +47,14 @@ class BidController extends Controller
         
         $data = json_decode(json_encode(BidResource::collection($bids)));
 
+
+        $bids->appends([
+            'game_id' => $game_id,
+            'user_id' => $user_id,
+            'date_to' => $request->date_to,
+            'date_from' => $request->date_from,
+        ]);
+
         if ($request->ajax()) {
             return view('admin.bids.pagination', compact('bids','data'))->render();
         }

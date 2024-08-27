@@ -67,7 +67,7 @@
                                     <select name="game_id" id="game_id" class="form-select select2">
                                         <option value="">(Select Game)</option>
                                         @foreach ($games as $item)
-                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                            <option value="{{ $item->id }}" {{ request()->game_id == $item->id ? 'selected' : '' }}>{{ $item->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -77,7 +77,7 @@
                                     <select name="user_id" id="user_id" class="form-select select2">
                                         <option value="">(Select User)</option>
                                         @foreach ($users as $item)
-                                            <option value="{{ $item->id }}">{{ $item->name }} ({{ $item->mobile }})</option>
+                                            <option value="{{ $item->id }}" {{ request()->user_id == $item->id ? 'selected' : '' }}>{{ $item->name }} ({{ $item->mobile }})</option>
                                         @endforeach
                                     </select>
                                 </div>
