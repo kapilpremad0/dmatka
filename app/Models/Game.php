@@ -21,7 +21,7 @@ class Game extends Model
     }
 
     public function date_result($date){
-        return $this->declare_result()->whereDate('date',$date)->select('date','number','created_at')->first() ?? '';
+        return $this->declare_result()->whereDate('date',$date)->select('id','date','number','created_at')->first() ?? '';
     }
     
 }

@@ -28,8 +28,8 @@ class LoginController extends Controller
 
     function login(LoginRequest $request){
         try{
-            $user = User::where('email',$request->email)->where('role',User::$user)->first();
-            if (Hash::check($request->password, $user->password)) {
+            $user = User::where('mobile',$request->mobile)->where('role',User::$user)->first();
+            if (Hash::check($request->password, $user->password)  && !empty($user)) {
                 $token =  $user->createToken($user->id)->plainTextToken;
                 $token = explode('|',$token)[1];
                 $user->token = $token;

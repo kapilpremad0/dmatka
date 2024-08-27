@@ -79,4 +79,12 @@ class DeclareResultController extends Controller
         });
         return redirect()->back()->with('success','Result declared successfully');
     }
+
+
+    function destroy ($id){
+        Winner::where('declare_id',$id)->delete();
+        Wallet::where('declare_id',$id)->delete();
+        DeclareResult::where('id',$id)->delete();
+        return redirect()->back()->with('success','Delete result successful');
+    }
 }

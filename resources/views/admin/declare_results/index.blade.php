@@ -61,9 +61,42 @@
                                                 <td>
 
                                                     @if (!empty($item->result_declare))
-                                                        <span class="badge bg-light-primary">Number : {{ $item->result_declare->number }} </span>
+                                                    
+                                                    <span class="badge bg-light-primary">Number : {{ $item->result_declare->number }} 
+
                                                         
+                                                    </span>
+                                                    
                                                         <span class="badge bg-light-warning">Declared Time : {{ $item->result_declare->created_at }} </span>
+
+                                                        <a href="#" class="text-danger badge bg-light-danger" data-bs-toggle="modal" data-bs-target="#danger_ke{{ $item->result_declare->id }}">
+                                                            <i data-feather="trash" class="me-50"></i>
+                                                        </a> 
+
+                                                        <div class="modal fade modal-danger text-start" id="danger_ke{{ $item->result_declare->id }}" tabindex="-1" aria-labelledby="myModalLabel120" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered">
+                                                                
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="myModalLabel120">Delete</h5>
+                                                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            Are you sure you want to delete !
+                                                                        </div>
+                                                                        <form action="{{route('admin.declare_result.destroy',$item->result_declare->id)}}" method="POST">
+                                                                            @csrf
+                                                                            @method('delete')
+                                                                            <div class="modal-footer">
+                                                                                <button type="submit" class="btn btn-danger">Delete</button>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                            </div>
+                                                        </div>
+
+
+
                                                     @else
                                                         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#danger_ke{{ $item->id }}">Declare</button>
 
