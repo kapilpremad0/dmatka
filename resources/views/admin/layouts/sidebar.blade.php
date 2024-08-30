@@ -72,23 +72,30 @@
                 </li>
 
                 <li class=" nav-item {{ Request::routeIs('admin.transactions.index') ? 'active' : '' }}"><a
-                    class="d-flex align-items-center" href="{{ route('admin.transactions.index') }}"><i
-                        data-feather="file"></i><span class="menu-title text-truncate"
+                    class="d-flex align-items-center" href="{{ route('admin.transactions.index') }}">
+                    <i data-feather='shopping-bag'></i><span class="menu-title text-truncate"
                         data-i18n="Dashboards">Transactions</span><span
                         class="badge badge-light-warning rounded-pill ms-auto me-1"></span></a>
                 </li>
 
                 <li class=" nav-item {{ Request::routeIs('admin.declare_result.index') ? 'active' : '' }}"><a
                     class="d-flex align-items-center" href="{{ route('admin.declare_result.index') }}"><i
-                        data-feather="settings"></i><span class="menu-title text-truncate"
+                        data-feather="calendar"></i><span class="menu-title text-truncate"
                         data-i18n="Dashboards">Declare Result</span><span
                         class="badge badge-light-warning rounded-pill ms-auto me-1"></span></a>
                 </li>
 
                 <li class=" nav-item {{ Request::routeIs('admin.winners.index') ? 'active' : '' }}"><a
-                    class="d-flex align-items-center" href="{{ route('admin.winners.index') }}"><i
-                        data-feather="settings"></i><span class="menu-title text-truncate"
+                    class="d-flex align-items-center" href="{{ route('admin.winners.index') }}">
+                        <i data-feather='check-circle'></i><span class="menu-title text-truncate"
                         data-i18n="Dashboards">Winner</span><span
+                        class="badge badge-light-warning rounded-pill ms-auto me-1"></span></a>
+                </li>
+
+                <li class=" nav-item {{ Request::routeIs('admin.leaderboard') ? 'active' : '' }}"><a
+                    class="d-flex align-items-center" href="{{ route('admin.leaderboard') }}"><i
+                        data-feather="trending-up"></i><span class="menu-title text-truncate"
+                        data-i18n="Dashboards">Leaderboard</span><span
                         class="badge badge-light-warning rounded-pill ms-auto me-1"></span></a>
                 </li>
 

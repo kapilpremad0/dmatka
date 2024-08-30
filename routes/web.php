@@ -48,7 +48,7 @@ Route::group(['as' => 'admin.','prefix' => '/admin'], function (){
             Route::resource('winners',WinnerController::class);
             Route::post('settings/store_game_rates',[SettingController::class,'storeGameRates'])->name('settings.store_game_rates');
 
-
+            Route::get('leaderboard',[GameController::class,'leaderboard'])->name('leaderboard');
             Route::get('users/transactions/{id}',[UserController::class,'transactions'])->name('users.transactions');
             Route::get('users/bids/{id}',[UserController::class,'bids'])->name('users.bids');
             Route::get('users/winners/{id}',[UserController::class,'winners'])->name('users.winners');

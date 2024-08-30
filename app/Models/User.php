@@ -62,5 +62,10 @@ class User extends Authenticatable
         return $credit_sum - $debit_sum;
     }
 
+    public function winners()
+    {
+        return $this->hasMany(Winner::class);
+    }
+
 
 }

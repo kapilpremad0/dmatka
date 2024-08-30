@@ -19,6 +19,9 @@ class HomeController extends Controller
     function index(){
         try{
             $games = Game::limit(3)->get();
+            foreach($games as $key => $val){
+                $val['result_declare'] = $val->today_result();
+            }
             $bids = Bid::where('user_id',auth()->user()->id)->latest()->limit(5)->get();
             $wallet = Wallet::where('user_id',auth()->user()->id)->latest()->limit(5)->get();
             $data = [

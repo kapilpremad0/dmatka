@@ -16,7 +16,11 @@ class GameResource extends JsonResource
     {
         // return parent::toArray($request);
 
-        $declare = $this->today_result();
+        if(!empty($this->result_declare)){
+            $declare = $this->result_declare;
+        }else{
+            // $declare = $this->today_result();
+        }
 
         $data =  [
             'game_id' => $this->id ?? '',

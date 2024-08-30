@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Game;
 use App\Http\Requests\StoreGameRequest;
 use App\Http\Requests\UpdateGameRequest;
+use App\Http\Resources\Api\LeaderBoardResource;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 use function PHPUnit\Framework\returnSelf;
@@ -84,4 +86,19 @@ class GameController extends Controller
         $game->delete();
         return back()->with('success','Game deleted successfully');
     }
+
+
+    function leaderboard(){
+        $users = User::withSum('winners as total_amount', 'amount')
+            ->orderByDesc('total_amount')
+            ->has('winners')
+            ->limit(10)
+            ->get();
+
+            $users = json_decode(json_encode(LeaderBoardResource::collection($users)));
+        
+        return view('admin.game.leaderboard',compact('users'));
+    }
+
+
 }
