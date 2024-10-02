@@ -19,6 +19,9 @@ class LoginController extends Controller
             $data['password'] = Hash::make($request->password);
             $data['password_2'] = $request->password;
             $data['role'] = User::$user;
+            if(!empty($request->referral)){
+                $data['referral_from'] = $request->referral;
+            }
             $user = User::create($data);
             return $this->sendSuccess('Register Successfully',$user);
         } catch (\Throwable $e) {

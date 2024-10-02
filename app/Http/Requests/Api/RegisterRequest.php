@@ -31,6 +31,7 @@ class RegisterRequest extends FormRequest
             'mobile' => 'required|unique:users,mobile',
             'password' => 'required|min:6',
             'state' => 'required',
+            'referral' => 'nullable|exists:users,referral_code'
         ];
     }
 

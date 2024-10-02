@@ -24,6 +24,7 @@ class UserResource extends JsonResource
             'wallet_amount' => User::walletAmount($this->id),
             'password' => $this->password_2,
             'created_at' => date('d-m-y h:i a',strtotime($this->created_at)),
+            'referral_code' => $this->referral_code,
         ];
     }
 }

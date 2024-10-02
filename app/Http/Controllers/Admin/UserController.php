@@ -24,6 +24,18 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        $user = User::get()->map(function($user){
+            if(empty($user->referral_code)){
+                $firstThreeChars = substr($user->name, 0, 4);
+                $fixedNumber = str_pad($user->id, 5, '0', STR_PAD_LEFT);
+                $referal_code = $firstThreeChars.$fixedNumber;
+                User::where('id',$user->id)->update([
+                    'referral_code' => $referal_code,
+                ]);
+            }
+        });
+
+
         $query_search = $request->input('search');
 
         $users = User::when($query_search, function ($query) use ($query_search) {

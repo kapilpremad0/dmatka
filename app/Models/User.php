@@ -67,5 +67,21 @@ class User extends Authenticatable
         return $this->hasMany(Winner::class);
     }
 
+    protected static function boot() {
+        parent::boot();
+
+        static ::created(function($user){
+            if(empty($user->referral_code)){
+                $firstThreeChars = substr($user->name, 0, 4);
+                $fixedNumber = str_pad($user->id, 5, '0', STR_PAD_LEFT);
+                $referal_code = $firstThreeChars.$fixedNumber;
+                User::where('id',$user->id)->update([
+                    'referral_code' => $referal_code,
+                ]);
+            }
+        });
+
+    }
+
 
 }

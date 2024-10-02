@@ -84,7 +84,7 @@
                                                                     {{ $item->name ?? '' }}
                                                                 </a>
                                                             </div>
-                                                            <div class="font-small-2 text-muted">{{ $item->mobile ?? '' }}</div>
+                                                            <div class="font-small-2 text-muted">{{ $item->referral_code }} | {{ $item->mobile ?? '' }}</div>
                                                         </div>
                                                     </div>
                                                 </td>

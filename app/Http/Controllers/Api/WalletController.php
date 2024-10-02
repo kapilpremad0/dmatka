@@ -13,10 +13,15 @@ use Illuminate\Http\Request;
 class WalletController extends Controller
 {
     use ApiResponse;
-    function index(){
+    function index(Request $request){
         try{
-            $bids = Wallet::where('user_id',auth()->user()->id)
-                    ->latest()
+            $bids = Wallet::where('user_id',auth()->user()->id);
+                    if($request->type == 'deposit'){
+                        $bids->whereIn('description',[
+                            "New Added in wallet"
+                        ]);
+                    }
+                    $bids = $bids->latest()
                     ->paginate(20);
 
             $bids_data = WalletResource::collection($bids);
