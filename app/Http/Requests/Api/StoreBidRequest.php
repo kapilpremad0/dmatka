@@ -29,7 +29,7 @@ class StoreBidRequest extends FormRequest
             'game_id' => 'required|exists:games,id',
             'type' => 'required|in:jodi,crossing,haruf',
             'bids' => 'required|array',
-            'bids.*.number' => 'required|integer|min:0',
+            'bids.*.number' => 'required',
             'bids.*.amount' => 'required|numeric|min:1',
         ];
     }
