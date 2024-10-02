@@ -33,6 +33,7 @@
                 <!-- Basic multiple Column Form section start -->
                 <section id="multiple-column-form">
                     <div class="row">
+
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
@@ -124,6 +125,60 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="col-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Payment Setting</h4>
+                                </div>
+                                <div class="card-body">
+                                    <form class="form" action="{{ route('admin.settings.store_payment_setting') }}" method="POST" enctype="multipart/form-data" id="form_submit_2">
+                                    {{ csrf_field() }}
+                                    
+                                        <div class="row">
+
+                                            <div class="col-md-12 col-12">
+                                                <div class="mb-1">
+                                                    <label class="form-label" for="first-name-column">UPI ID<span class="error"></span></label>
+                                                    <input type="text" id="first-name-column" name="upi_id" class="form-control" placeholder="UPI ID"  value="{{ $payments['upi_id'] ?? '' }}" />
+                                                    @error('name')<span class="error text-danger">{{ $message }}</span>@enderror
+                                                    <span class="error text-danger validation-class" id="upi_id-payment_error"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12 col-12">
+                                                <div class="mb-1">
+                                                    <label class="form-label" for="first-name-column">OR Code<span class="error"></span></label>
+                                                    <div>
+                                                        <img src="{{ url('public/upload/'.$payments['qr_code']) }}" alt="" width="200">
+                                                    </div>
+                                                    <input type="file" id="first-name-column" name="qr_code" class="form-control" placeholder="UPI ID"  value="{{ old('name') }}" />
+                                                    @error('name')<span class="error text-danger">{{ $message }}</span>@enderror
+                                                    <span class="error text-danger validation-class" id="qr_code-payment_error"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12 col-12">
+                                                <div class="mb-1">
+                                                    <label class="form-label" for="first-name-column">Whatsaap Number<span class="error"></span></label>
+                                                    
+                                                    <input type="number" id="first-name-column" name="whatsaap_no" class="form-control" placeholder="Whatsapp Number"  value="{{ $payments['whatsaap_no'] ?? '' }}" />
+                                                    @error('name')<span class="error text-danger">{{ $message }}</span>@enderror
+                                                    <span class="error text-danger validation-class" id="whatsaap_no-payment_error"></span>
+                                                </div>
+                                            </div>
+                                            
+
+                                            <div class="col-12">
+                                                <button type="submit" class="btn btn-primary me-1">Submit</button>
+                                                <button type="reset" class="btn btn-outline-secondary">Reset</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </section>
                 <!-- Basic Floating Label Form section end -->
@@ -139,12 +194,7 @@
     <script>
         $(document).ready(function() {
 
-            $('#form_submit input').keypress(function(e) {
-                if (e.which == 13) { // 13 is the Enter key
-                    e.preventDefault(); // Prevent the default action (which would submit the form)
-                    $('#form_submit').submit(); // Trigger AJAX form submission
-                }
-            });
+            
 
 
             $('#form_submit').on('submit', function(e) {
@@ -178,6 +228,45 @@
                             var  error = res.responseJSON.errors
                             $.each(error, function (key, value) {
                                 $("#" + key + "-price_rate_error").text(value);
+                            });
+                        }
+                    }
+                    
+                    }
+                });
+            });
+
+            $('#form_submit_2').on('submit', function(e) {
+                e.preventDefault(); // Prevent the default form submission
+                var $form = $('#form_submit_2');
+                var url = $form.attr('action');
+                var formData = new FormData($form[0]);
+                $('.validation-class').html('');
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    beforeSend: function () {
+                        $('.spinner-loader').css('display', 'block');
+                    },
+                    success: function (res) {
+                    // Toastify({
+                    //     text: `Login successful`,
+                    //     className: "success",
+                    //     style: {
+                    //         background: "linear-gradient(to right, #00b09b, #96c93d)",
+                    //     }
+                    // }).showToast();
+                      location.reload();
+                    },
+                    error: function (res) {
+                    if(res.status == 422 || res.status == 401){
+                        if (res.responseJSON && res.responseJSON.errors) {
+                            var  error = res.responseJSON.errors
+                            $.each(error, function (key, value) {
+                                $("#" + key + "-payment_error").text(value);
                             });
                         }
                     }

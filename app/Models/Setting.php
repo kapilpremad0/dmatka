@@ -14,4 +14,9 @@ class Setting extends Model
     static $haruf_winning_amount = 'haruf_winning_amount';
     static $crossing_winning_amount = 'crossing_winning_amount';
 
+
+    static $payment_whatsaap_no= 'payment_whatsaap_no';
+    static $payment_upi_id = 'payment_upi_id';
+    static $payment_qr_code = 'payment_qr_code';
+
 }
