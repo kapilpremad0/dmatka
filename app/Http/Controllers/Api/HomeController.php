@@ -39,6 +39,9 @@ class HomeController extends Controller
 
             $data = [
                 'wallet_amount' => User::walletAmount(auth()->user()->id),
+                'banners' => [
+                    url('public/upload/chit.jpg')
+                ],
                 'profile' => auth()->user(),
                 'payment_setting' => $payments,
                 'games'  => GameResource::collection($games),
