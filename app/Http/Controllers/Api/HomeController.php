@@ -19,7 +19,7 @@ class HomeController extends Controller
     use ApiResponse;
     function index(){
         try{
-            $games = Game::limit(3)->get();
+            $games = Game::orderBy('id','DESC')->get();
             foreach($games as $key => $val){
                 $val['result_declare'] = $val->today_result();
             }

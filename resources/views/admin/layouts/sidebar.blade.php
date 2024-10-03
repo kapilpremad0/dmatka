@@ -5,7 +5,7 @@
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item me-auto"><a class="navbar-brand" href="{{ route('admin.dashboard') }}">
 
-                <h2>D-Matka</h2>
+                <h2>A1-Matka</h2>
                     {{-- <img src="{{ asset('public/logo.png') }}" alt="" width="100%"
                         style="    height: 64px;
                 "> --}}
