@@ -48,8 +48,17 @@ class GameController extends Controller
     public function store(StoreGameRequest $request)
     {
         $data = $request->validated();
+        $data['image'] = null;
+        if ($request->hasFile('image')) {
+            $image = $request->image;
+            $image_name = time() . rand(1, 100) . '-' . $request->image->getClientOriginalName();
+            $image_name = preg_replace('/\s+/', '', $image_name);
+            $request->image->move(public_path('upload'), $image_name);
+            $data['image'] = $image_name;
+        }
         Game::create($data);
-        return redirect()->route('admin.games.index')->with('success','Game create successfully');
+        session()->flash('success','Game create successfully');
+        // return redirect()->route('admin.games.index')->with('success','Game create successfully');
     }
 
     /**
@@ -65,7 +74,7 @@ class GameController extends Controller
      */
     public function edit(Game $game)
     {
-        return view('admin.game.edit',compact('game'));
+        return view('admin.game.create',compact('game'));
     }
 
     /**
@@ -74,8 +83,16 @@ class GameController extends Controller
     public function update(UpdateGameRequest $request, Game $game)
     {
         $data = $request->validated();
+        if ($request->hasFile('image')) {
+            $image = $request->image;
+            $image_name = time() . rand(1, 100) . '-' . $request->image->getClientOriginalName();
+            $image_name = preg_replace('/\s+/', '', $image_name);
+            $request->image->move(public_path('upload'), $image_name);
+            $data['image'] = $image_name;
+        }
         $game->update($data);
-        return redirect()->route('admin.games.index')->with('success','Game update successfully');
+        session()->flash('success','Game update successfully');
+        // return redirect()->route('admin.games.index')->with('success','Game update successfully');
     }
 
     /**

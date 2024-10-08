@@ -9,7 +9,7 @@ class Game extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','hindi_name','open_time','close_time'];
+    protected $fillable = ['name','hindi_name','open_time','close_time','image','description'];
 
     public function declare_result()
     {

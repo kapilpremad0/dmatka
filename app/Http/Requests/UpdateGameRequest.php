@@ -25,7 +25,9 @@ class UpdateGameRequest extends FormRequest
             'name' => 'required',
             'hindi_name' => 'required',
             'open_time' => 'required',
-            'close_time' => 'required'
+            'close_time' => 'required',
+            'image' => 'nullable|mimes:png,jpg,jpeg',
+            'description' => 'required'
         ];
     }
 }

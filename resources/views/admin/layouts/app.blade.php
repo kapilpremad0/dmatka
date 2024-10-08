@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url('public/admin-assets/app-assets/vendors/css/vendors.min.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ url('public/admin-assets/app-assets/vendors/css/charts/apexcharts.css')}}">
     <link rel="stylesheet" type="text/css" href="{{ url('public/admin-assets/font_icon/css/font-awesome.min.css')}}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     
 
     <!-- END: Vendor CSS-->

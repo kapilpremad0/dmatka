@@ -30,7 +30,13 @@ class GameResource extends JsonResource
             'close_time' => $this->close_time ?? '',
             'declare_number' => $declare->number ?? '',
             'declare_date' => $declare->created_at ?? '',
+            'description' => $declare->description ?? '',
         ];
+
+
+        if(!empty($this->image)){
+            $data['image'] = url('public/upload/'.$this->image);
+        }
 
         if(!empty($declare->created_at)){
             $data['declare_date'] = date('d-m-y h:i a',strtotime($declare->created_at));

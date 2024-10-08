@@ -23,8 +23,8 @@ class HomeController extends Controller
             foreach($games as $key => $val){
                 $val['result_declare'] = $val->today_result();
             }
-            $bids = Bid::where('user_id',auth()->user()->id)->latest()->limit(5)->get();
-            $wallet = Wallet::where('user_id',auth()->user()->id)->latest()->limit(5)->get();
+            // $bids = Bid::where('user_id',auth()->user()->id)->latest()->limit(5)->get();
+            // $wallet = Wallet::where('user_id',auth()->user()->id)->latest()->limit(5)->get();
 
             $payments =[
                 'qr_code' => Setting::where('key',Setting::$payment_qr_code)->first()->value ?? 0,
@@ -35,18 +35,18 @@ class HomeController extends Controller
             if(!empty($payments['qr_code'])){
                 $payments['qr_code'] = url('public/upload/'.$payments['qr_code']);
             }
-
-
+            
             $data = [
                 'wallet_amount' => User::walletAmount(auth()->user()->id),
+                "maqrue_tag" => 'Hello a matka for you ************************',
                 'banners' => [
                     url('public/upload/chit.jpg')
                 ],
                 'profile' => auth()->user(),
                 'payment_setting' => $payments,
                 'games'  => GameResource::collection($games),
-                'bids' => BidsResource::collection($bids),
-                'wallet_transactions' => WalletResource::collection($wallet),
+                // 'bids' => BidsResource::collection($bids),
+                // 'wallet_transactions' => WalletResource::collection($wallet),
                 
             ];
             return $this->sendSuccess('Register Successfully',$data);
