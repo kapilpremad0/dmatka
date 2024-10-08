@@ -269,9 +269,8 @@
                                         <th scope="col" >#</th>
                                         <th scope="col" >Name</th>
                                         <th scope="col" >Amount</th>
-                                        <th scope="col" >Bank Name</th>
-                                        <th scope="col" >Bank Account <br> Number</th>
-                                        <th scope="col" >IFSC Code</th>
+                                        <th scope="col" >Description</th>
+                                        <th scope="col" >Type</th>
                                         <th>Created at</th>
                                         <th>Action</th>
                                     </tr>
@@ -279,26 +278,42 @@
                                 <tbody>
                                     @php  $i = 1; @endphp
                                     @foreach ($withdrawls as $item)
-                                        <tr>
-                                            <td >{{ $i }}</td>
-                                            <td>
-                                                <div class="d-flex align-items-center">
-                                                    <div>
-                                                        <div class="fw-bolder">
-                                                            
-                                                                {{ $item->name ?? '' }}
-                                                            
-                                                        </div>
-                                                        <div class="font-small-2 text-muted">{{ $item->mobile ?? '' }}</div>
+                                    <tr>
+                                        <td >{{ $i }}</td>
+                                        <td>
+                                            <div class="d-flex align-items-center">
+                                                <div>
+                                                    <div class="fw-bolder">
+                                                        <a href="#">
+                                                            {{ $item->user->name ?? '' }}
+                                                        </a>
                                                     </div>
+                                                    <div class="font-small-2 text-muted">{{ $item->user->mobile ?? '' }}</div>
                                                 </div>
-                                            </td>
-                                            <td>₹{{ $item->amount ?? 0 }}</td>
-                                            <td>{{ $item->bank_name ?? ''}}</td>
-                                            <td>{{ $item->bank_account_number ?? ''}}</td>
-                                            <td>{{ $item->bank_ifsc ?? '' }}</td>
-                                            <td>{{ $item->created_at ?? '' }}</td>
-                                            <td>
+                                            </div>
+                                        </td>
+                                        <td>₹{{ $item->amount ?? 0 }}</td>
+                                        <td>
+                                            @if (!empty($item->upi_id))
+                                                <ul>
+                                                    <li>UPI ID : {{ $item->upi_id }}</li>
+                                                </ul>
+                                            @else
+                                                <ul>
+                                                    <li>Bank Name : {{ $item->bank_name }}</li>
+                                                    <li>Bank Account Number : {{ $item->bank_account_number }}</li>
+                                                    <li>Bank IFSC : {{ $item->bank_ifsc }}</li>
+                                                    <li>Bank Holder Name : {{ $item->name }}</li>
+                                                    <li>Mobile : {{ $item->mobile }}</li>
+                                                </ul>    
+                                            @endif
+                                            
+                                        </td>
+                                        <td>{{ $item->status }}</td>
+                                        <td>{{ $item->created_at ?? '' }}</td>
+
+                                        <td>
+                                            @if ($item->status == 'Pending')
                                                 <div class="dropdown">
                                                     <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0" data-bs-toggle="dropdown">
                                                         <i data-feather="more-vertical"></i>
@@ -364,9 +379,13 @@
                                                     </div>
                                                 </div>
 
+                                            @else
+                                                {{ $item->status }}
+                                            @endif
 
-                                            </td>
-                                        </tr>
+
+                                        </td>
+                                    </tr>
                                         @php
                                             $i++;
                                         @endphp
