@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\GameController;
 use App\Http\Controllers\Api\HomeController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\WalletController;
+use App\Http\Controllers\Api\WithdrawlController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -34,5 +35,6 @@ Route::get('leaderboard',[GameController::class,'leaderboard']);
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::apiResource('bids',BidController::class);
     Route::apiResource('wallet',WalletController::class);
+    Route::apiResource('withdrawl',WithdrawlController::class);
     Route::get('home',[HomeController::class,'index']);
 });

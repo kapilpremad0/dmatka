@@ -35,10 +35,20 @@ class HomeController extends Controller
             if(!empty($payments['qr_code'])){
                 $payments['qr_code'] = url('public/upload/'.$payments['qr_code']);
             }
-            
+
+            $settings = [
+                'min_withdraw_amount' => 500,
+                'max_withdraw_amount' => 1000,
+                'min_fund_amount' => 500,
+                'max_fund_amount' => 1000,
+                'referral_bonus' => 500,
+                'referral_commission' => 10,
+             ];
+
             $data = [
                 'wallet_amount' => User::walletAmount(auth()->user()->id),
                 "maqrue_tag" => 'Hello a matka for you ************************',
+                "settings" => $settings,
                 'banners' => [
                     url('public/upload/chit.jpg')
                 ],
