@@ -250,6 +250,144 @@
            <!-- Responsive tables end -->
            </section>
 
+
+           <section id="ajax-datatable">
+            <!-- Responsive tables start -->
+            <div class="row" >
+                <div class="col-12">
+                    <div class="card card-company-table">
+                        <div class="card-header">
+                            <h4 class="card-title">Withdrawl Request</h4>
+                            {{-- <div class="col-md-3" style="text-align: end">
+                                <input type="text" id="searchInput" class="form-control" placeholder="Search">
+                            </div> --}}
+                        </div>
+                        <div class="table-responsive" id="table-responsive">
+                            <table class="table mb-0">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th scope="col" >#</th>
+                                        <th scope="col" >Name</th>
+                                        <th scope="col" >Amount</th>
+                                        <th scope="col" >Bank Name</th>
+                                        <th scope="col" >Bank Account <br> Number</th>
+                                        <th scope="col" >IFSC Code</th>
+                                        <th>Created at</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php  $i = 1; @endphp
+                                    @foreach ($withdrawls as $item)
+                                        <tr>
+                                            <td >{{ $i }}</td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <div>
+                                                        <div class="fw-bolder">
+                                                            
+                                                                {{ $item->name ?? '' }}
+                                                            
+                                                        </div>
+                                                        <div class="font-small-2 text-muted">{{ $item->mobile ?? '' }}</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>₹{{ $item->amount ?? 0 }}</td>
+                                            <td>{{ $item->bank_name ?? ''}}</td>
+                                            <td>{{ $item->bank_account_number ?? ''}}</td>
+                                            <td>{{ $item->bank_ifsc ?? '' }}</td>
+                                            <td>{{ $item->created_at ?? '' }}</td>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <button type="button" class="btn btn-sm dropdown-toggle hide-arrow py-0" data-bs-toggle="dropdown">
+                                                        <i data-feather="more-vertical"></i>
+                                                    </button>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        
+                                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#accept_{{ $item->id }}">
+                                                            <i data-feather="plus"></i>
+                                                            <span>Accept</span>
+                                                        </a>
+
+                                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#reject_{{ $item->id }}">
+                                                            <i data-feather='x'></i>
+                                                            <span>Reject</span>
+                                                        </a>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal fade modal-danger text-start" id="reject_{{ $item->id }}" tabindex="-1" aria-labelledby="myModalLabel120" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="myModalLabel120">Reject</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    Are you sure you want to reject !
+                                                                </div>
+                                                                <form action="{{route('admin.change_withdrawl_request')}}" method="POST">
+                                                                    @csrf
+                                                                    <input type="hidden" id="" value="{{ $item->id }}" name="id">
+                                                                    <input type="hidden" id="" value="2" name="status">
+                                                                    <div class="modal-footer">
+                                                                        <button type="submit" class="btn btn-danger">Reject</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="modal fade modal-danger text-start" id="accept_{{ $item->id }}" tabindex="-1" aria-labelledby="myModalLabel120" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="myModalLabel120">Accept</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    Are you sure you want to accept !
+                                                                </div>
+                                                                <form action="{{route('admin.change_withdrawl_request')}}" method="POST">
+                                                                    @csrf
+                                                                    <input type="hidden" id="" value="{{ $item->id }}" name="id">
+                                                                    <input type="hidden" id="" value="1" name="status">
+                                                                    <div class="modal-footer">
+                                                                        <button type="submit" class="btn btn-danger">Accept</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </td>
+                                        </tr>
+                                        @php
+                                            $i++;
+                                        @endphp
+                                    @endforeach
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        {{-- <div class="table-responsive">
+                            <table class="table mb-0">
+                                <!-- ... (your table structure) ... -->
+                            </table>
+                            {{ $users->links('admin._pagination') }}
+                        </div> --}}
+                    </div>
+                </div>
+            </div>
+       <!-- Responsive tables end -->
+       </section>
+
         </div>
     </div>
 </div>

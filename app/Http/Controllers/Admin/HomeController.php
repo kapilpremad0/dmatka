@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Admin\UserResource;
+use App\Http\Resources\Api\WithdrawRequestResource;
 use App\Models\Bid;
 use App\Models\Game;
 use App\Models\User;
 use App\Models\Winner;
+use App\Models\Withdraw;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -25,6 +27,12 @@ class HomeController extends Controller
 
         $users = User::where('role',User::$user)->latest()->limit(3)->get();
         $users = json_decode(json_encode(UserResource::collection($users)));
-        return view('admin.dashboard.index',compact('data','users'));
+
+        $withdrawls = Withdraw::where('status',Withdraw::$pending)->with('user')->latest()->limit(20)->get();
+        $withdrawls = json_decode(json_encode(WithdrawRequestResource::collection($withdrawls)));
+
+        return view('admin.dashboard.index',compact('data','users','withdrawls'));
     }
+
+    
 }

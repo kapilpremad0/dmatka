@@ -13,6 +13,7 @@ use App\Http\Resources\Api\WalletResource;
 use App\Models\Bid;
 use App\Models\Wallet;
 use App\Models\Winner;
+use App\Models\Withdraw;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -187,7 +188,20 @@ class UserController extends Controller
 
 
 
-
-
+    function change_withdrawl_request(Request $request){
+        if($request->status == 1){
+            $data = Withdraw::find($request->id);
+            Wallet::create([
+                'user_id' => $data->user_id,
+                'type' => Wallet::$credit,
+                'description' => 'Withdrawl request approved',
+                'amount' => $data->amount
+            ]);
+        }
+        Withdraw::where('id',$request->id)->update([
+            'status' => $request->status,
+        ]);
+        return redirect()->back()->with('success','Request change successfully');
+    }
 
 }

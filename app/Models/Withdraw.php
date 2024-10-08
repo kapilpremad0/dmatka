@@ -29,4 +29,10 @@ class Withdraw extends Model
         '1' => 'Approved',
         '2' => 'Rejected'
     ];
+
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
 }
