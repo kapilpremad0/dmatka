@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\BidController;
 use App\Http\Controllers\Admin\DeclareResultController;
+use App\Http\Controllers\Admin\FundController;
 use App\Http\Controllers\Admin\GameController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\LoginController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\WinnerController;
+use App\Http\Controllers\Admin\WithdrawlController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,6 +45,8 @@ Route::group(['as' => 'admin.','prefix' => '/admin'], function (){
             Route::resource('users',UserController::class);
             Route::resource('bids',BidController::class);
             Route::resource('transactions',TransactionController::class);
+            Route::resource('withdrawl',WithdrawlController::class);
+            Route::resource('fund',FundController::class);
             Route::resource('settings',SettingController::class);
             Route::resource('declare_result',DeclareResultController::class);
             Route::resource('winners',WinnerController::class);

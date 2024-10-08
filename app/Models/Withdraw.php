@@ -17,7 +17,8 @@ class Withdraw extends Model
         'bank_name',
         'bank_account_number',
         'bank_ifsc',
-        'user_id'
+        'user_id',
+        'upi_id'
     ];
 
     static $pending = 0;

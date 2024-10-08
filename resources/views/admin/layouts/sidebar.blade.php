@@ -78,6 +78,20 @@
                         class="badge badge-light-warning rounded-pill ms-auto me-1"></span></a>
                 </li>
 
+                <li class=" nav-item {{ Request::routeIs('admin.withdrawl.index') ? 'active' : '' }}"><a
+                    class="d-flex align-items-center" href="{{ route('admin.withdrawl.index') }}">
+                    <i data-feather='shopping-bag'></i><span class="menu-title text-truncate"
+                        data-i18n="Dashboards">Withdrawl</span><span
+                        class="badge badge-light-warning rounded-pill ms-auto me-1"></span></a>
+                </li>
+
+                <li class=" nav-item {{ Request::routeIs('admin.fund.index') ? 'active' : '' }}"><a
+                    class="d-flex align-items-center" href="{{ route('admin.fund.index') }}">
+                    <i data-feather='shopping-bag'></i><span class="menu-title text-truncate"
+                        data-i18n="Dashboards">Fund Request</span><span
+                        class="badge badge-light-warning rounded-pill ms-auto me-1"></span></a>
+                </li>
+
                 <li class=" nav-item {{ Request::routeIs('admin.declare_result.index') ? 'active' : '' }}"><a
                     class="d-flex align-items-center" href="{{ route('admin.declare_result.index') }}"><i
                         data-feather="calendar"></i><span class="menu-title text-truncate"

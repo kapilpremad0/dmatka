@@ -27,11 +27,12 @@ class StoreWithdrawRequest extends FormRequest
     {
         return [
             'amount' => 'required|numeric',
-            'bank_name' => 'required',
-            'bank_account_number' => 'required',
-            'bank_ifsc' => 'required',
-            'name' => 'required',
-            'mobile' => 'required|numeric|digits:10'
+            'upi_id' => 'nullable',
+            'bank_name' => 'required_if:upi_id,null',
+            'bank_account_number' => 'required_if:upi_id,null',
+            'bank_ifsc' => 'required_if:upi_id,null',
+            'name' => 'required_if:upi_id,null',
+            'mobile' => 'required_if:upi_id,null|numeric|digits:10',
         ];
     }
 

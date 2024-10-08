@@ -25,6 +25,7 @@ class TransactionController extends Controller
         $dateTo = Carbon::parse($dateTo)->addDay()->toDateString(); // Add one day
 
         $users = User::where('role',User::$user)->orderBy('name','asc')->get();
+        
         $transactions = Wallet::with('user')
         ->when($user_id, function ($query) use ($user_id) {
             $query->where('user_id',$user_id);

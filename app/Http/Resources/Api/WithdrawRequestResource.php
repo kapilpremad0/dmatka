@@ -20,6 +20,7 @@ class WithdrawRequestResource extends JsonResource
         $data  = parent::toArray($request);
         $data_message = Withdraw::$status_names;
         $data['status'] = $data_message[$this->status];
+        $data['created_at'] = date('d-m-y h:i a',strtotime($this->created_at));
         return $data;
     }
 }
