@@ -26,8 +26,8 @@ class StoreGameRequest extends FormRequest
             'hindi_name' => 'required',
             'open_time' => 'required',
             'close_time' => 'required',
-            'image' => 'required|mimes:png,jpg,jpeg',
-            'description' => 'required'
+            'image' => 'nullable|mimes:png,jpg,jpeg',
+            'description' => 'nullable'
         ];
     }
 }

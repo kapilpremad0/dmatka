@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Setting\StoreGameRateRequest;
+use App\Http\Requests\Admin\Setting\StoreGeneralSettingRequest;
 use App\Http\Requests\Admin\Setting\StorePaymentRequest;
 use App\Http\Requests\StoreGameRequest;
 use App\Models\Setting;
@@ -24,8 +25,20 @@ class SettingController extends Controller
             'whatsaap_no' => Setting::where('key',Setting::$payment_whatsaap_no)->first()->value ?? 0,
         ];
 
-        // return $game_rates;
-        return view('admin.settings.index',compact('game_rates','payments'));
+        $settings = Setting::get();
+
+        $general_settings = [
+            'max_withdraw_amount' => $settings->where('key',Setting::$max_withdraw_amount)->first()->value ?? 0,
+            'min_fund_amount' => $settings->where('key',Setting::$min_fund_amount)->first()->value ?? 0,
+            'marque_tag' => $settings->where('key',Setting::$marque_tag)->first()->value ?? 0,
+            'max_fund_amount' => $settings->where('key',Setting::$max_fund_amount)->first()->value ?? 0,
+            'referral_commission' => $settings->where('key',Setting::$referral_commission)->first()->value ?? 0,
+            'referral_bonus' => $settings->where('key',Setting::$referral_bonus)->first()->value ?? 0,
+            'min_withdraw_amount' => $settings->where('key',Setting::$min_withdraw_amount)->first()->value ?? 0,
+        ];
+
+        // return $general_settings;
+        return view('admin.settings.index',compact('game_rates','payments','general_settings'));
     }
 
 
@@ -66,5 +79,30 @@ class SettingController extends Controller
             
         }
 
+    }
+
+
+    function storeGeneralSetting(StoreGeneralSettingRequest $request){
+        Setting::updateOrCreate(['key' => Setting::$referral_bonus],[
+            'value' => $request->referral_bonus,
+        ]);
+        Setting::updateOrCreate(['key' => Setting::$referral_commission],[
+            'value' => $request->referral_commission,
+        ]);
+        Setting::updateOrCreate(['key' => Setting::$min_withdraw_amount],[
+            'value' => $request->min_withdraw_amount,
+        ]);
+        Setting::updateOrCreate(['key' => Setting::$max_fund_amount],[
+            'value' => $request->max_fund_amount,
+        ]);
+        Setting::updateOrCreate(['key' => Setting::$max_withdraw_amount],[
+            'value' => $request->max_withdraw_amount,
+        ]);
+        Setting::updateOrCreate(['key' => Setting::$min_fund_amount],[
+            'value' => $request->min_fund_amount,
+        ]);
+        Setting::updateOrCreate(['key' => Setting::$marque_tag],[
+            'value' => $request->marque_tag,
+        ]);
     }
 }

@@ -19,4 +19,14 @@ class Setting extends Model
     static $payment_upi_id = 'payment_upi_id';
     static $payment_qr_code = 'payment_qr_code';
 
+    static $marque_tag= 'marque_tag';
+    static $max_fund_amount = 'max_fund_amount';
+    static $min_fund_amount = 'min_fund_amount';
+    static $max_withdraw_amount= 'max_withdraw_amount';
+    static $min_withdraw_amount = 'min_withdraw_amount';
+    static $referral_commission = 'referral_commission';
+    static $referral_bonus = 'referral_bonus';
+
+
+
 }

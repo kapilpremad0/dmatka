@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 Route::get('login',[LoginController::class,'login'])->name('login');
@@ -52,6 +52,7 @@ Route::group(['as' => 'admin.','prefix' => '/admin'], function (){
             Route::resource('winners',WinnerController::class);
             Route::post('settings/store_game_rates',[SettingController::class,'storeGameRates'])->name('settings.store_game_rates');
             Route::post('settings/store_payment_setting',[SettingController::class,'storePaymentSetting'])->name('settings.store_payment_setting');
+            Route::post('settings/store_general_setting',[SettingController::class,'storeGeneralSetting'])->name('settings.store_general_setting');
 
             Route::post('change_withdrawl_request',[UserController::class,'change_withdrawl_request'])->name('change_withdrawl_request');
 

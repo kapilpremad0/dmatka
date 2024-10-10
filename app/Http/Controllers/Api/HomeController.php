@@ -36,25 +36,28 @@ class HomeController extends Controller
                 $payments['qr_code'] = url('public/upload/'.$payments['qr_code']);
             }
 
-            $settings = [
-                'min_withdraw_amount' => 500,
-                'max_withdraw_amount' => 1000,
-                'min_fund_amount' => 500,
-                'max_fund_amount' => 1000,
-                'referral_bonus' => 500,
-                'referral_commission' => 10,
-             ];
+            $settings = Setting::get();
+
+            $general_settings = [
+                'max_withdraw_amount' => $settings->where('key',Setting::$max_withdraw_amount)->first()->value ?? 0,
+                'min_fund_amount' => $settings->where('key',Setting::$min_fund_amount)->first()->value ?? 0,
+                'max_fund_amount' => $settings->where('key',Setting::$max_fund_amount)->first()->value ?? 0,
+                'referral_commission' => $settings->where('key',Setting::$referral_commission)->first()->value ?? 0,
+                'referral_bonus' => $settings->where('key',Setting::$referral_bonus)->first()->value ?? 0,
+                'min_withdraw_amount' => $settings->where('key',Setting::$min_withdraw_amount)->first()->value ?? 0,
+            ];
 
             $data = [
                 'wallet_amount' => User::walletAmount(auth()->user()->id),
-                "maqrue_tag" => 'Hello a matka for you ************************',
-                "settings" => $settings,
+                "maqrue_tag" => $settings->where('key',Setting::$marque_tag)->first()->value ?? '',
+                "settings" => $general_settings,
                 'banners' => [
                     url('public/upload/chit.jpg')
                 ],
                 'profile' => auth()->user(),
                 'payment_setting' => $payments,
                 'games'  => GameResource::collection($games),
+                
                 // 'bids' => BidsResource::collection($bids),
                 // 'wallet_transactions' => WalletResource::collection($wallet),
                 

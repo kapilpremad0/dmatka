@@ -179,6 +179,92 @@
                             </div>
                         </div>
 
+                        <div class="col-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">General Setting</h4>
+                                </div>
+                                <div class="card-body">
+                                    <form class="form" action="{{ route('admin.settings.store_general_setting') }}" method="POST" enctype="multipart/form-data" id="form_submit_store_general_setting">
+                                    {{ csrf_field() }}
+                                    
+                                        <div class="row">
+
+                                            <div class="col-md-12 col-12">
+                                                <div class="mb-1">
+                                                    <label class="form-label" for="first-name-column">Marque Notification<span class="error"></span></label>
+                                                    <input type="text" id="first-name-column" name="marque_tag" class="form-control" placeholder="Marque Tag"  value="{{ $general_settings['marque_tag'] ?? '' }}" />
+                                                    @error('name')<span class="error text-danger">{{ $message }}</span>@enderror
+                                                    <span class="error text-danger validation-class" id="marque_tag-general_setting_error"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12 col-12">
+                                                <div class="mb-1">
+                                                    <label class="form-label" for="first-name-column">Min Withdraw Amount<span class="error"></span></label>
+                                                    <input type="text" id="first-name-column" name="min_withdraw_amount" class="form-control" placeholder="Enter Value"  value="{{ $general_settings['min_withdraw_amount'] ?? '' }}" />
+                                                    @error('name')<span class="error text-danger">{{ $message }}</span>@enderror
+                                                    <span class="error text-danger validation-class" id="min_withdraw_amount-general_setting_error"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12 col-12">
+                                                <div class="mb-1">
+                                                    <label class="form-label" for="first-name-column">Max Withdraw Amount<span class="error"></span></label>
+                                                    <input type="text" id="first-name-column" name="max_withdraw_amount" class="form-control" placeholder="Enter Value"  value="{{ $general_settings['max_withdraw_amount'] ?? '' }}" />
+                                                    @error('name')<span class="error text-danger">{{ $message }}</span>@enderror
+                                                    <span class="error text-danger validation-class" id="max_withdraw_amount-general_setting_error"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12 col-12">
+                                                <div class="mb-1">
+                                                    <label class="form-label" for="first-name-column">Min Fund Amount<span class="error"></span></label>
+                                                    <input type="text" id="first-name-column" name="min_fund_amount" class="form-control" placeholder="Enter Value"  value="{{ $general_settings['min_fund_amount'] ?? '' }}" />
+                                                    @error('name')<span class="error text-danger">{{ $message }}</span>@enderror
+                                                    <span class="error text-danger validation-class" id="min_fund_amount-general_setting_error"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12 col-12">
+                                                <div class="mb-1">
+                                                    <label class="form-label" for="first-name-column">Max Fund Amount<span class="error"></span></label>
+                                                    <input type="text" id="first-name-column" name="max_fund_amount" class="form-control" placeholder="Enter Value"  value="{{ $general_settings['max_fund_amount'] ?? '' }}" />
+                                                    @error('name')<span class="error text-danger">{{ $message }}</span>@enderror
+                                                    <span class="error text-danger validation-class" id="max_fund_amount-general_setting_error"></span>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-md-12 col-12">
+                                                <div class="mb-1">
+                                                    <label class="form-label" for="first-name-column">Referral Bonus<span class="error"></span></label>
+                                                    <input type="text" id="first-name-column" name="referral_bonus" class="form-control" placeholder="Enter Value"  value="{{ $general_settings['referral_bonus'] ?? '' }}" />
+                                                    @error('name')<span class="error text-danger">{{ $message }}</span>@enderror
+                                                    <span class="error text-danger validation-class" id="referral_bonus-general_setting_error"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-12 col-12">
+                                                <div class="mb-1">
+                                                    <label class="form-label" for="first-name-column">Referral Commission<span class="error"></span></label>
+                                                    <input type="text" id="first-name-column" name="referral_commission" class="form-control" placeholder="Enter Value"  value="{{ $general_settings['referral_commission'] ?? '' }}" />
+                                                    @error('name')<span class="error text-danger">{{ $message }}</span>@enderror
+                                                    <span class="error text-danger validation-class" id="referral_commission-general_setting_error"></span>
+                                                </div>
+                                            </div>
+                                            
+
+                                            <div class="col-12">
+                                                <button type="submit" class="btn btn-primary me-1">Submit</button>
+                                                <button type="reset" class="btn btn-outline-secondary">Reset</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </section>
                 <!-- Basic Floating Label Form section end -->
@@ -267,6 +353,45 @@
                             var  error = res.responseJSON.errors
                             $.each(error, function (key, value) {
                                 $("#" + key + "-payment_error").text(value);
+                            });
+                        }
+                    }
+                    
+                    }
+                });
+            });
+
+            $('#form_submit_store_general_setting').on('submit', function(e) {
+                e.preventDefault(); // Prevent the default form submission
+                var $form = $('#form_submit_store_general_setting');
+                var url = $form.attr('action');
+                var formData = new FormData($form[0]);
+                $('.validation-class').html('');
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    beforeSend: function () {
+                        $('.spinner-loader').css('display', 'block');
+                    },
+                    success: function (res) {
+                    // Toastify({
+                    //     text: `Login successful`,
+                    //     className: "success",
+                    //     style: {
+                    //         background: "linear-gradient(to right, #00b09b, #96c93d)",
+                    //     }
+                    // }).showToast();
+                      location.reload();
+                    },
+                    error: function (res) {
+                    if(res.status == 422 || res.status == 401){
+                        if (res.responseJSON && res.responseJSON.errors) {
+                            var  error = res.responseJSON.errors
+                            $.each(error, function (key, value) {
+                                $("#" + key + "-general_setting_error").text(value);
                             });
                         }
                     }

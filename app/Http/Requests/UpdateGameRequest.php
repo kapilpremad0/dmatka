@@ -27,7 +27,7 @@ class UpdateGameRequest extends FormRequest
             'open_time' => 'required',
             'close_time' => 'required',
             'image' => 'nullable|mimes:png,jpg,jpeg',
-            'description' => 'required'
+            'description' => 'nullable'
         ];
     }
 }

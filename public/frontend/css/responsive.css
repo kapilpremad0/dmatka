@@ -1,0 +1,54 @@
+@media(min-width:320px)and (max-width:768px){
+        body p {
+        font-size: 14px !important;
+    }
+.footer-logosbor ul{
+     padding: 15px 0px;
+    margin: 0;
+    border: 1px solid #919192;
+    border-radius: 50px;
+    margin: 0 0;
+}
+
+.homenine-cmnbox h3 {
+    background: linear-gradient(to left, #37B7C3 0%, #50B498 100%);
+    color: #000;
+    font-weight: 700;
+    width: auto;
+    padding: 14px;
+    margin-left: 0px;
+    border-radius: 14px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.bannersec-hm {
+    padding: 100px 10px 100px;
+}
+
+.bannersec-hm h1 {
+    font-size: 2.5rem;
+    color: #fff;
+    font-weight: bold;
+    text-align: left;
+    line-height: 1.2;
+    margin: 10px 0 40px;
+}
+.bannersec-hm h1 , .homefive-sec h3{
+    font-size: calc(1.3rem + .6vw);
+}
+
+.homefour-sec h2, .hometen-sec h2{
+    font-size: calc(1.325rem + .9vw);
+}
+.homesix-sec h3 , .homesevan-sec h3 {
+    font-size:1.75rem;
+}
+.homesevan-box h4 , .homeeight-sec h1{
+     font-size:1.25rem;
+}
+.footer-logo li {
+     display: grid;
+     justify-content: flex-start;
+}
+}
