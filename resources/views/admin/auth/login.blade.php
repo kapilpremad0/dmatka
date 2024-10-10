@@ -10,6 +10,9 @@
     <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
     <title>Login Page - A1-Matka</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url('frontend/img/footerlogo.png')}}">
+
     <link rel="apple-touch-icon" href="{{ url('public/admin-assets/app-assets/images/ico/apple-icon-120.png')}}">
     {{-- <link rel="shortcut icon" type="image/x-icon" href="{{ url('public/admin-assets/app-assets/images/ico/favicon.ico')}}"> --}}
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
@@ -60,7 +63,7 @@
 
 <body class="vertical-layout vertical-menu-modern blank-page navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="blank-page">
     <!-- BEGIN: Content-->
-    <div class="app-content content " style="background-color: #ffe8e7">
+    <div class="app-content content " style="background-color: #3b8883">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper">
@@ -73,7 +76,7 @@
                         <div class="card mb-0" style="">
                             <div class="card-body" >
                                 <a href="#" class="brand-logo">
-                                    {{-- <img src="{{ url('public/logo.png') }}" alt="" width="177"> --}}
+                                    <img src="{{ url('public/frontend/img/footerlogo.png') }}" alt="" width="177">
                                     {{-- <h2 class="brand-text text-primary ms-1" style="color:#386fb9 !important;">Premad Software Solution</h2> --}}
                                 </a>
 

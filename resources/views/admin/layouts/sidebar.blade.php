@@ -5,10 +5,10 @@
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item me-auto"><a class="navbar-brand" href="{{ route('admin.dashboard') }}">
 
-                <h2>A1-Matka</h2>
-                    {{-- <img src="{{ asset('public/logo.png') }}" alt="" width="100%"
+                {{-- <h2>A1-Matka</h2> --}}
+                    <img src="{{ url('public/frontend/img/footerlogo.png') }}" alt="" width="100%"
                         style="    height: 64px;
-                "> --}}
+                ">
 
                 </a></li>
             <li class="nav-item nav-toggle"><a class="nav-link modern-nav-toggle pe-0" data-bs-toggle="collapse"><i

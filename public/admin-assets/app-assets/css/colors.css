@@ -340,8 +340,12 @@ input:focus ~ .bg-light {
 }
 
 .btn-primary {
-  border-color: #d90d04 !important;
-  background-color: #e02a22 !important;
+  /* border-color: #d90d04 !important;
+  background-color: #e02a22 !important; */
+
+  border-color: #3b8883 !important;
+    background-color: #010001 !important;
+
   color: #fff !important;
 }
 

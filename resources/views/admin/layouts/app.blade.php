@@ -11,7 +11,7 @@
     <meta name="author" content="PIXINVENT">
     <title>A1-Matka</title>
     <link rel="apple-touch-icon" href="{{ url('public/admin-assets/app-assets/images/ico/apple-icon-120.png')}}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ url('public/favicon.png')}}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url('frontend/img/footerlogo.png')}}">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
 
     <!-- BEGIN: Vendor CSS-->
