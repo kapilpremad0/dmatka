@@ -14,11 +14,16 @@ class Wallet extends Model
         'type',
         'amount',
         'description',
-        'declare_id'
+        'declare_id',
+        'type_by'
     ];
 
     static $debit = 'debit';
     static $credit = 'credit';
+
+
+    static $wallet_recharge = 'wallet_recharge';
+    static $play_bid = 'play_bid';
 
 
     public function user()

@@ -4,14 +4,14 @@
             <th scope="col" >#</th>
             <th scope="col" >Name</th>
             <th scope="col" >Amount</th>
-            <th scope="col" >Description</th>
+            <th scope="col" >Image</th>
             <th scope="col" >Type</th>
             <th>Created at</th>
             <th>Action</th>
         </tr>
     </thead>
     <tbody>
-        @php  $i = ($withdrawls->currentPage() - 1) * $withdrawls->perPage() + 1; @endphp
+        @php  $i = ($funds->currentPage() - 1) * $funds->perPage() + 1; @endphp
         @foreach ($data as $item)
             <tr>
                 <td >{{ $i }}</td>
@@ -29,20 +29,11 @@
                 </td>
                 <td>₹{{ $item->amount ?? 0 }}</td>
                 <td>
-                    @if (!empty($item->upi_id))
-                        <ul>
-                            <li>UPI ID : {{ $item->upi_id }}</li>
-                        </ul>
-                    @else
-                        <ul>
-                            <li>Bank Name : {{ $item->bank_name }}</li>
-                            <li>Bank Account Number : {{ $item->bank_account_number }}</li>
-                            <li>Bank IFSC : {{ $item->bank_ifsc }}</li>
-                            <li>Bank Holder Name : {{ $item->name }}</li>
-                            <li>Mobile : {{ $item->mobile }}</li>
-                        </ul>    
+                    @if (!empty($item->image))
+                        <a href="{{ $item->image }}" target="_blank">
+                            <i data-feather="eye"></i>
+                        </a>    
                     @endif
-                    
                 </td>
                 <td>{{ $item->status }}</td>
                 <td>{{ $item->created_at ?? '' }}</td>
@@ -79,10 +70,11 @@
                                         <div class="modal-body">
                                             Are you sure you want to reject !
                                         </div>
-                                        <form action="{{route('admin.change_withdrawl_request')}}" method="POST">
+                                        <form action="{{route('admin.fund.index')}}" method="GET">
                                             @csrf
                                             <input type="hidden" id="" value="{{ $item->id }}" name="id">
                                             <input type="hidden" id="" value="2" name="status">
+                                            <input type="hidden" name="change_status" value="true">
                                             <div class="modal-footer">
                                                 <button type="submit" class="btn btn-danger">Reject</button>
                                             </div>
@@ -102,10 +94,11 @@
                                         <div class="modal-body">
                                             Are you sure you want to accept !
                                         </div>
-                                        <form action="{{route('admin.change_withdrawl_request')}}" method="POST">
+                                        <form action="{{route('admin.fund.index')}}" method="GET">
                                             @csrf
                                             <input type="hidden" id="" value="{{ $item->id }}" name="id">
                                             <input type="hidden" id="" value="1" name="status">
+                                            <input type="hidden" name="change_status" value="true">
                                             <div class="modal-footer">
                                                 <button type="submit" class="btn btn-danger">Accept</button>
                                             </div>
@@ -128,8 +121,8 @@
         
     </tbody>
 </table>
-@include('admin._pagination', ['data' => $withdrawls])
 
+@include('admin._pagination', ['data' => $funds])
 
 <script>
     feather.replace();

@@ -27,6 +27,7 @@ class StoreWalletRequest extends FormRequest
     {
         return [
             'amount' => 'required|numeric|min:10|max:5000',
+            'file' => 'nullable|mimes:png,jpg,jpeg'
         ];
     }
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\StoreWalletRequest;
 use App\Http\Resources\Api\WalletResource;
+use App\Models\FundRequest;
 use App\Models\User;
 use App\Models\Wallet;
 use App\Traits\ApiResponse;
@@ -36,12 +37,27 @@ class WalletController extends Controller
 
     function store(StoreWalletRequest $request){
         try{
-            $data = Wallet::create([
+
+            $data = [
                 'user_id' => auth()->user()->id,
-                'type' => Wallet::$credit,
                 'amount' => $request->amount,
-                'description' => 'Wallet Recharge'
-            ]);
+            ];
+
+            if ($request->hasFile('file')) {
+                $image = $request->file;
+                $image_name = time() . rand(1, 100) . '-' . $image->getClientOriginalName();
+                $image_name = preg_replace('/\s+/', '', $image_name);
+                $image->move(public_path('upload'), $image_name);
+                $data['image'] = $image_name;
+            }
+            FundRequest::create($data);
+            
+            // $data = Wallet::create([
+            //     'user_id' => auth()->user()->id,
+            //     'type' => Wallet::$credit,
+            //     'amount' => $request->amount,
+            //     'description' => 'Wallet Recharge'
+            // ]);
             return $this->sendSuccess('Register Successfully',$data);
         } catch (\Throwable $e) {
             return $this->sendFailed($e->getMessage() . ' On Line ' . $e->getLine(), 500);
