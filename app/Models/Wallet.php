@@ -25,6 +25,8 @@ class Wallet extends Model
     static $wallet_recharge = 'wallet_recharge';
     static $play_bid = 'play_bid';
     static $referral_commission = 'referral_commission';
+    static $referral_bonus = 'referral_bonus';
+    static $game_winner = 'game_winner';
 
 
     public function user()

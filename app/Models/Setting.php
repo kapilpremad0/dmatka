@@ -33,6 +33,9 @@ class Setting extends Model
         return Setting::where('key','referral_commission')->first()->value ?? 0;
     }
 
+    public static function  getReferralBonus(){
+        return Setting::where('key','referral_bonus')->first()->value ?? 0;
+    }
 
 
 }

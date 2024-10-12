@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\LoginRequest;
 use App\Http\Requests\Api\RegisterRequest;
+use App\Models\Setting;
 use App\Models\User;
+use App\Models\Wallet;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -21,6 +23,14 @@ class LoginController extends Controller
             $data['role'] = User::$user;
             if(!empty($request->referral)){
                 $data['referral_from'] = $request->referral;
+                $referral_user = User::where('referral_code',$request->referral)->first();
+                Wallet::create([
+                    'user_id' => $referral_user->id,
+                    'type'  => Wallet::$credit,
+                    'description' => 'You won referral bonus',
+                    'amount' => Setting::getReferralBonus(),
+                    'type_by' =>Wallet::$referral_bonus,
+                ]);
             }
             $user = User::create($data);
             return $this->sendSuccess('Register Successfully',$user);

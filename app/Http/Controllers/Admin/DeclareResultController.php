@@ -93,6 +93,7 @@ class DeclareResultController extends Controller
             'amount' => $winner->amount,
             'description' => "You've won the bid for '{$game->name}' with a {$bid->type}",
             'declare_id' => $declare_result->id,
+            'type_by' => Wallet::$game_winner,
         ]);
 
         
