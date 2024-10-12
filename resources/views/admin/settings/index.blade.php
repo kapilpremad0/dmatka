@@ -126,7 +126,108 @@
                             </div>
                         </div>
 
-                        <div class="col-6">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">General Setting</h4>
+                                </div>
+                                <div class="card-body">
+                                    <form class="form" action="{{ route('admin.settings.store_general_setting') }}" method="POST" enctype="multipart/form-data" id="form_submit_store_general_setting">
+                                    {{ csrf_field() }}
+                                    
+                                        <div class="row">
+
+                                            <div class="col-md-6 col-12">
+                                                <div class="mb-1">
+                                                    <label class="form-label" for="first-name-column">Marque Notification<span class="error"></span></label>
+                                                    <input type="text" id="first-name-column" name="marque_tag" class="form-control" placeholder="Marque Tag"  value="{{ $general_settings['marque_tag'] ?? '' }}" />
+                                                    @error('name')<span class="error text-danger">{{ $message }}</span>@enderror
+                                                    <span class="error text-danger validation-class" id="marque_tag-general_setting_error"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 col-12">
+                                                <div class="mb-1">
+                                                    <label class="form-label" for="first-name-column">Min Withdraw Amount<span class="error"></span></label>
+                                                    <input type="text" id="first-name-column" name="min_withdraw_amount" class="form-control" placeholder="Enter Value"  value="{{ $general_settings['min_withdraw_amount'] ?? '' }}" />
+                                                    @error('name')<span class="error text-danger">{{ $message }}</span>@enderror
+                                                    <span class="error text-danger validation-class" id="min_withdraw_amount-general_setting_error"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 col-12">
+                                                <div class="mb-1">
+                                                    <label class="form-label" for="first-name-column">Max Withdraw Amount<span class="error"></span></label>
+                                                    <input type="text" id="first-name-column" name="max_withdraw_amount" class="form-control" placeholder="Enter Value"  value="{{ $general_settings['max_withdraw_amount'] ?? '' }}" />
+                                                    @error('name')<span class="error text-danger">{{ $message }}</span>@enderror
+                                                    <span class="error text-danger validation-class" id="max_withdraw_amount-general_setting_error"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 col-12">
+                                                <div class="mb-1">
+                                                    <label class="form-label" for="first-name-column">Min Fund Amount<span class="error"></span></label>
+                                                    <input type="text" id="first-name-column" name="min_fund_amount" class="form-control" placeholder="Enter Value"  value="{{ $general_settings['min_fund_amount'] ?? '' }}" />
+                                                    @error('name')<span class="error text-danger">{{ $message }}</span>@enderror
+                                                    <span class="error text-danger validation-class" id="min_fund_amount-general_setting_error"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 col-12">
+                                                <div class="mb-1">
+                                                    <label class="form-label" for="first-name-column">Max Fund Amount<span class="error"></span></label>
+                                                    <input type="text" id="first-name-column" name="max_fund_amount" class="form-control" placeholder="Enter Value"  value="{{ $general_settings['max_fund_amount'] ?? '' }}" />
+                                                    @error('name')<span class="error text-danger">{{ $message }}</span>@enderror
+                                                    <span class="error text-danger validation-class" id="max_fund_amount-general_setting_error"></span>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-md-6 col-12">
+                                                <div class="mb-1">
+                                                    <label class="form-label" for="first-name-column">Referral Bonus<span class="error"></span></label>
+                                                    <input type="text" id="first-name-column" name="referral_bonus" class="form-control" placeholder="Enter Value"  value="{{ $general_settings['referral_bonus'] ?? '' }}" />
+                                                    @error('name')<span class="error text-danger">{{ $message }}</span>@enderror
+                                                    <span class="error text-danger validation-class" id="referral_bonus-general_setting_error"></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-6 col-12">
+                                                <div class="mb-1">
+                                                    <label class="form-label" for="first-name-column">Referral Commission<span class="error"></span></label>
+                                                    <input type="text" id="first-name-column" name="referral_commission" class="form-control" placeholder="Enter Value"  value="{{ $general_settings['referral_commission'] ?? '' }}" />
+                                                    @error('name')<span class="error text-danger">{{ $message }}</span>@enderror
+                                                    <span class="error text-danger validation-class" id="referral_commission-general_setting_error"></span>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="col-md-6 col-12">
+                                                <div class="mb-1">
+                                                    <label class="form-label" for="first-name-column">Home Banner<span class="error"></span></label>
+                                                    @if (!empty($general_settings['home_banner']))
+                                                        <div>
+                                                            <img src="{{ url('public/upload/'.$general_settings['home_banner']) }}" alt="" width="500" height="200">
+                                                        </div>
+                                                    @endif
+                                                    <input type="file" id="first-name-column" name="home_banner" class="form-control" />
+                                                    @error('name')<span class="error text-danger">{{ $message }}</span>@enderror
+                                                    <span class="error text-danger validation-class" id="home_banner-general_setting_error"></span>
+                                                </div>
+                                            </div>
+                                            
+
+                                            <div class="col-12">
+                                                <button type="submit" class="btn btn-primary me-1">Submit</button>
+                                                <button type="reset" class="btn btn-outline-secondary">Reset</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
                                     <h4 class="card-title">Payment Setting</h4>
@@ -137,7 +238,7 @@
                                     
                                         <div class="row">
 
-                                            <div class="col-md-12 col-12">
+                                            <div class="col-md-6 col-12">
                                                 <div class="mb-1">
                                                     <label class="form-label" for="first-name-column">UPI ID<span class="error"></span></label>
                                                     <input type="text" id="first-name-column" name="upi_id" class="form-control" placeholder="UPI ID"  value="{{ $payments['upi_id'] ?? '' }}" />
@@ -146,7 +247,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-12 col-12">
+                                            <div class="col-md-6 col-12">
                                                 <div class="mb-1">
                                                     <label class="form-label" for="first-name-column">OR Code<span class="error"></span></label>
                                                     <div>
@@ -158,7 +259,7 @@
                                                 </div>
                                             </div>
 
-                                            <div class="col-md-12 col-12">
+                                            <div class="col-md-6 col-12">
                                                 <div class="mb-1">
                                                     <label class="form-label" for="first-name-column">Whatsaap Number<span class="error"></span></label>
                                                     
@@ -179,91 +280,7 @@
                             </div>
                         </div>
 
-                        <div class="col-6">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">General Setting</h4>
-                                </div>
-                                <div class="card-body">
-                                    <form class="form" action="{{ route('admin.settings.store_general_setting') }}" method="POST" enctype="multipart/form-data" id="form_submit_store_general_setting">
-                                    {{ csrf_field() }}
-                                    
-                                        <div class="row">
-
-                                            <div class="col-md-12 col-12">
-                                                <div class="mb-1">
-                                                    <label class="form-label" for="first-name-column">Marque Notification<span class="error"></span></label>
-                                                    <input type="text" id="first-name-column" name="marque_tag" class="form-control" placeholder="Marque Tag"  value="{{ $general_settings['marque_tag'] ?? '' }}" />
-                                                    @error('name')<span class="error text-danger">{{ $message }}</span>@enderror
-                                                    <span class="error text-danger validation-class" id="marque_tag-general_setting_error"></span>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-12 col-12">
-                                                <div class="mb-1">
-                                                    <label class="form-label" for="first-name-column">Min Withdraw Amount<span class="error"></span></label>
-                                                    <input type="text" id="first-name-column" name="min_withdraw_amount" class="form-control" placeholder="Enter Value"  value="{{ $general_settings['min_withdraw_amount'] ?? '' }}" />
-                                                    @error('name')<span class="error text-danger">{{ $message }}</span>@enderror
-                                                    <span class="error text-danger validation-class" id="min_withdraw_amount-general_setting_error"></span>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-12 col-12">
-                                                <div class="mb-1">
-                                                    <label class="form-label" for="first-name-column">Max Withdraw Amount<span class="error"></span></label>
-                                                    <input type="text" id="first-name-column" name="max_withdraw_amount" class="form-control" placeholder="Enter Value"  value="{{ $general_settings['max_withdraw_amount'] ?? '' }}" />
-                                                    @error('name')<span class="error text-danger">{{ $message }}</span>@enderror
-                                                    <span class="error text-danger validation-class" id="max_withdraw_amount-general_setting_error"></span>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-12 col-12">
-                                                <div class="mb-1">
-                                                    <label class="form-label" for="first-name-column">Min Fund Amount<span class="error"></span></label>
-                                                    <input type="text" id="first-name-column" name="min_fund_amount" class="form-control" placeholder="Enter Value"  value="{{ $general_settings['min_fund_amount'] ?? '' }}" />
-                                                    @error('name')<span class="error text-danger">{{ $message }}</span>@enderror
-                                                    <span class="error text-danger validation-class" id="min_fund_amount-general_setting_error"></span>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-12 col-12">
-                                                <div class="mb-1">
-                                                    <label class="form-label" for="first-name-column">Max Fund Amount<span class="error"></span></label>
-                                                    <input type="text" id="first-name-column" name="max_fund_amount" class="form-control" placeholder="Enter Value"  value="{{ $general_settings['max_fund_amount'] ?? '' }}" />
-                                                    @error('name')<span class="error text-danger">{{ $message }}</span>@enderror
-                                                    <span class="error text-danger validation-class" id="max_fund_amount-general_setting_error"></span>
-                                                </div>
-                                            </div>
-
-
-                                            <div class="col-md-12 col-12">
-                                                <div class="mb-1">
-                                                    <label class="form-label" for="first-name-column">Referral Bonus<span class="error"></span></label>
-                                                    <input type="text" id="first-name-column" name="referral_bonus" class="form-control" placeholder="Enter Value"  value="{{ $general_settings['referral_bonus'] ?? '' }}" />
-                                                    @error('name')<span class="error text-danger">{{ $message }}</span>@enderror
-                                                    <span class="error text-danger validation-class" id="referral_bonus-general_setting_error"></span>
-                                                </div>
-                                            </div>
-
-                                            <div class="col-md-12 col-12">
-                                                <div class="mb-1">
-                                                    <label class="form-label" for="first-name-column">Referral Commission<span class="error"></span></label>
-                                                    <input type="text" id="first-name-column" name="referral_commission" class="form-control" placeholder="Enter Value"  value="{{ $general_settings['referral_commission'] ?? '' }}" />
-                                                    @error('name')<span class="error text-danger">{{ $message }}</span>@enderror
-                                                    <span class="error text-danger validation-class" id="referral_commission-general_setting_error"></span>
-                                                </div>
-                                            </div>
-                                            
-
-                                            <div class="col-12">
-                                                <button type="submit" class="btn btn-primary me-1">Submit</button>
-                                                <button type="reset" class="btn btn-outline-secondary">Reset</button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
+                        
 
                     </div>
                 </section>

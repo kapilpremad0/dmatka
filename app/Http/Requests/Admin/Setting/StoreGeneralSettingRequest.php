@@ -28,7 +28,8 @@ class StoreGeneralSettingRequest extends FormRequest
             'min_withdraw_amount' => 'required|numeric',
             'max_withdraw_amount' => 'required|numeric',
             'min_fund_amount' => 'required|numeric',
-            'max_fund_amount' => 'required|numeric'
+            'max_fund_amount' => 'required|numeric',
+            'home_banner' => 'nullable|mimes:png,jpg,jpeg'
         ];
     }
 }

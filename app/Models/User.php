@@ -67,6 +67,11 @@ class User extends Authenticatable
         return $this->hasMany(Winner::class);
     }
 
+    public function from_referral()
+    {
+        return $this->belongsTo(User::class,'referral_from','referral_code');
+    }
+
     protected static function boot() {
         parent::boot();
 
@@ -82,6 +87,8 @@ class User extends Authenticatable
         });
 
     }
+
+
 
 
 }

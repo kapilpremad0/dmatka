@@ -35,6 +35,7 @@ class SettingController extends Controller
             'referral_commission' => $settings->where('key',Setting::$referral_commission)->first()->value ?? 0,
             'referral_bonus' => $settings->where('key',Setting::$referral_bonus)->first()->value ?? 0,
             'min_withdraw_amount' => $settings->where('key',Setting::$min_withdraw_amount)->first()->value ?? 0,
+            'home_banner' => $settings->where('key',Setting::$home_banner)->first()->value ?? '',
         ];
 
         // return $general_settings;
@@ -104,5 +105,18 @@ class SettingController extends Controller
         Setting::updateOrCreate(['key' => Setting::$marque_tag],[
             'value' => $request->marque_tag,
         ]);
+
+        if ($request->hasFile('home_banner')) {
+            
+            $image = $request->home_banner;
+            $image_name = time() . rand(1, 100) . '-' . $request->home_banner->getClientOriginalName();
+            $image_name = preg_replace('/\s+/', '', $image_name);
+            $request->home_banner->move(public_path('upload'), $image_name);
+
+            Setting::updateOrCreate(['key' => Setting::$home_banner],[
+                'value' => $image_name,
+            ]);
+            
+        }
     }
 }

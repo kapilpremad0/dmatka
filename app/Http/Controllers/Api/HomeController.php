@@ -45,14 +45,19 @@ class HomeController extends Controller
                 'referral_commission' => $settings->where('key',Setting::$referral_commission)->first()->value ?? 0,
                 'referral_bonus' => $settings->where('key',Setting::$referral_bonus)->first()->value ?? 0,
                 'min_withdraw_amount' => $settings->where('key',Setting::$min_withdraw_amount)->first()->value ?? 0,
+                
+                'total_referral_count' => Wallet::where('user_id',auth()->user()->id)->where('type_by',Wallet::$referral_commission)->sum('amount'),
+                'total_referral_won' => Wallet::where('user_id',auth()->user()->id)->where('type_by',Wallet::$referral_commission)->count(),
             ];
+
+            $home_banner = $settings->where('key',Setting::$home_banner)->first()->value ?? 'chit.jpg';
 
             $data = [
                 'wallet_amount' => User::walletAmount(auth()->user()->id),
                 "maqrue_tag" => $settings->where('key',Setting::$marque_tag)->first()->value ?? '',
                 "settings" => $general_settings,
                 'banners' => [
-                    url('public/upload/chit.jpg')
+                    url('public/upload/'.$home_banner)
                 ],
                 'profile' => auth()->user(),
                 'payment_setting' => $payments,

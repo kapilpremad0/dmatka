@@ -26,6 +26,12 @@ class Setting extends Model
     static $min_withdraw_amount = 'min_withdraw_amount';
     static $referral_commission = 'referral_commission';
     static $referral_bonus = 'referral_bonus';
+    static $home_banner = 'home_banner';
+
+
+    public static function  getReferralCommision(){
+        return Setting::where('key','referral_commission')->first()->value ?? 0;
+    }
 
 
 
