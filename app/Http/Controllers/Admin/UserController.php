@@ -18,6 +18,8 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
+use function PHPUnit\Framework\returnSelf;
+
 class UserController extends Controller
 {
     /**
@@ -102,7 +104,8 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return redirect()->back()->with('success','User delete successfully');
     }
 
 

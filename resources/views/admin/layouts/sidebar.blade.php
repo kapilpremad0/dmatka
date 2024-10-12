@@ -66,28 +66,28 @@
 
                 <li class=" nav-item {{ Request::routeIs('admin.bids.index') ? 'active' : '' }}"><a
                     class="d-flex align-items-center" href="{{ route('admin.bids.index') }}"><i
-                        data-feather="file"></i><span class="menu-title text-truncate"
+                        data-feather="book"></i><span class="menu-title text-truncate"
                         data-i18n="Dashboards">Bids</span><span
                         class="badge badge-light-warning rounded-pill ms-auto me-1"></span></a>
                 </li>
 
                 <li class=" nav-item {{ Request::routeIs('admin.transactions.index') ? 'active' : '' }}"><a
                     class="d-flex align-items-center" href="{{ route('admin.transactions.index') }}">
-                    <i data-feather='shopping-bag'></i><span class="menu-title text-truncate"
+                    <i data-feather='file-text'></i><span class="menu-title text-truncate"
                         data-i18n="Dashboards">Transactions</span><span
                         class="badge badge-light-warning rounded-pill ms-auto me-1"></span></a>
                 </li>
 
                 <li class=" nav-item {{ Request::routeIs('admin.withdrawl.index') ? 'active' : '' }}"><a
                     class="d-flex align-items-center" href="{{ route('admin.withdrawl.index') }}">
-                    <i data-feather='shopping-bag'></i><span class="menu-title text-truncate"
+                    <i data-feather='arrow-down-circle'></i><span class="menu-title text-truncate"
                         data-i18n="Dashboards">Withdrawl</span><span
                         class="badge badge-light-warning rounded-pill ms-auto me-1"></span></a>
                 </li>
 
                 <li class=" nav-item {{ Request::routeIs('admin.fund.index') ? 'active' : '' }}"><a
                     class="d-flex align-items-center" href="{{ route('admin.fund.index') }}">
-                    <i data-feather='shopping-bag'></i><span class="menu-title text-truncate"
+                    <i data-feather='arrow-up-circle'></i><span class="menu-title text-truncate"
                         data-i18n="Dashboards">Fund Request</span><span
                         class="badge badge-light-warning rounded-pill ms-auto me-1"></span></a>
                 </li>
