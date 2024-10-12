@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\WinnerController;
 use App\Http\Controllers\Admin\WithdrawlController;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +30,41 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
+
+Route::get('/run-migrations', function () {
+    try {
+        Artisan::call('migrate');
+        return 'Migrations executed successfully';
+    } catch (\Exception $e) {
+        return 'Error: ' . $e->getMessage();
+    }
+});
+Route::get('/route-cache', function () {
+    try {
+        Artisan::call('route:cache');
+        return ' routes cached successfully';
+    } catch (\Exception $e) {
+        return 'Error: ' . $e->getMessage();
+    }
+});
+Route::get('/rollback', function () {
+    try {
+        Artisan::call('migrate:rollback');
+        return 'table rollback successfully';
+    } catch (\Exception $e) {
+        return 'Error: ' . $e->getMessage();
+    }
+});
+Route::get('/optimize-clear', function () {
+    try {
+        Artisan::call('optimize:clear');
+        return ' optimize clear successfully';
+    } catch (\Exception $e) {
+        return 'Error: ' . $e->getMessage();
+    }
+});
+
+
 
 Route::get('change_password/{id}',[Controller::class,'changePassword'])->name('change_password');
 Route::post('changePassword',[Controller::class,'StorechangePassword'])->name('storechangePassword');
