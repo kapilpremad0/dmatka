@@ -9,32 +9,32 @@
     <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
     <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="PIXINVENT">
-    <title>Reset Password Page Medico</title>
-    <link rel="apple-touch-icon" href="{{ asset('public/admin/app-assets/images/ico/apple-icon-120.png')}}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('public/admin/app-assets/images/ico/favicon.ico')}}">
+    <title>Reset Password</title>
+    <link rel="apple-touch-icon" href="{{ url('public/admin-assets/app-assets/images/ico/apple-icon-120.png')}}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url('frontend/img/footerlogo.png')}}">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet">
 
     <!-- BEGIN: Vendor CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/admin/app-assets/vendors/css/vendors.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url('public/admin-assets/app-assets/vendors/css/vendors.min.css')}}">
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/admin/app-assets/css/bootstrap.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/admin/app-assets/css/bootstrap-extended.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/admin/app-assets/css/colors.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/admin/app-assets/css/components.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/admin/app-assets/css/themes/dark-layout.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/admin/app-assets/css/themes/bordered-layout.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/admin/app-assets/css/themes/semi-dark-layout.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url('public/admin-assets/app-assets/css/bootstrap.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url('public/admin-assets/app-assets/css/bootstrap-extended.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url('public/admin-assets/app-assets/css/colors.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url('public/admin-assets/app-assets/css/components.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url('public/admin-assets/app-assets/css/themes/dark-layout.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url('public/admin-assets/app-assets/css/themes/bordered-layout.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url('public/admin-assets/app-assets/css/themes/semi-dark-layout.css')}}">
 
     <!-- BEGIN: Page CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/admin/app-assets/css/core/menu/menu-types/vertical-menu.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/admin/app-assets/css/plugins/forms/form-validation.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/admin/app-assets/css/pages/authentication.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url('public/admin-assets/app-assets/css/core/menu/menu-types/vertical-menu.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url('public/admin-assets/app-assets/css/plugins/forms/form-validation.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url('public/admin-assets/app-assets/css/pages/authentication.css')}}">
     <!-- END: Page CSS-->
 
     <!-- BEGIN: Custom CSS-->
-    <link rel="stylesheet" type="text/css" href="{{ asset('public/admin/assets/css/style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url('public/admin/assets/css/style.css')}}">
     <!-- END: Custom CSS-->
 
 </head>
@@ -44,7 +44,7 @@
 
 <body class="vertical-layout vertical-menu-modern blank-page navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="blank-page">
     <!-- BEGIN: Content-->
-    <div class="app-content content ">
+    <div class="app-content content " style="background-color: #3b8883">
         <div class="content-overlay"></div>
         <div class="header-navbar-shadow"></div>
         <div class="content-wrapper">
@@ -57,7 +57,7 @@
                         <div class="card mb-0">
                             <div class="card-body">
                                 <a href="#" class="brand-logo">
-                                    <h2 class="brand-text text-primary ms-1" style="color:#386fb9 !important;">Medico Agencies</h2>
+                                    <img src="{{ url('public/frontend/img/footerlogo.png') }}" alt="" width="177">
                                 </a>
 
                                 @if ($errors->any())
@@ -83,15 +83,15 @@
                                 <h4 class="card-title mb-1">Reset Password 🔒</h4>
                                 <p class="card-text mb-2">Your new password must be different from previously used passwords</p>
 
-                                <form class="auth-reset-password-form mt-2" action="{{ route('change_password') }}" method="POST">
+                                <form class="auth-reset-password-form mt-2" action="{{ route('storechangePassword') }}" method="POST">
                                     @csrf
-                                    <input type="hidden" name="user_id" value="{{ $id }}">
+                                    <input type="hidden" name="user_id" value="{{ $user_id }}">
                                     <div class="mb-1">
                                         <div class="d-flex justify-content-between">
                                             <label class="form-label" for="reset-password-new">New Password</label>
                                         </div>
                                         <div class="input-group input-group-merge form-password-toggle">
-                                            <input type="password" class="form-control form-control-merge" id="reset-password-new" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="reset-password-new" tabindex="1" autofocus />
+                                            <input type="password" class="form-control form-control-merge" id="reset-password-new" value="{{ old('password') }}" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="reset-password-new" tabindex="1" autofocus />
                                             <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
                                         </div>
                                     </div>
@@ -100,7 +100,7 @@
                                             <label class="form-label" for="reset-password-confirm">Confirm Password</label>
                                         </div>
                                         <div class="input-group input-group-merge form-password-toggle">
-                                            <input type="password" class="form-control form-control-merge" id="reset-password-confirm" name="confirm_password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="reset-password-confirm" tabindex="2" />
+                                            <input type="password" class="form-control form-control-merge" id="reset-password-confirm" value="{{ old('confirm_password') }}" name="confirm_password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="reset-password-confirm" tabindex="2" />
                                             <span class="input-group-text cursor-pointer"><i data-feather="eye"></i></span>
                                         </div>
                                     </div>
@@ -123,20 +123,20 @@
 
 
     <!-- BEGIN: Vendor JS-->
-    <script src="{{ asset('public/admin/app-assets/vendors/js/vendors.min.js')}}"></script>
+    <script src="{{ url('public/admin-assets/app-assets/vendors/js/vendors.min.js')}}"></script>
     <!-- BEGIN Vendor JS-->
 
     <!-- BEGIN: Page Vendor JS-->
-    <script src="{{ asset('public/admin/app-assets/vendors/js/forms/validation/jquery.validate.min.js')}}"></script>
+    <script src="{{ url('public/admin-assets/app-assets/vendors/js/forms/validation/jquery.validate.min.js')}}"></script>
     <!-- END: Page Vendor JS-->
 
     <!-- BEGIN: Theme JS-->
-    <script src="{{ asset('public/admin/app-assets/js/core/app-menu.js')}}"></script>
-    <script src="{{ asset('public/admin/app-assets/js/core/app.js')}}"></script>
+    <script src="{{ url('public/admin-assets/app-assets/js/core/app-menu.js')}}"></script>
+    <script src="{{ url('public/admin-assets/app-assets/js/core/app.js')}}"></script>
     <!-- END: Theme JS-->
 
     <!-- BEGIN: Page JS-->
-    <script src="{{ asset('public/admin/app-assets/js/scripts/pages/auth-reset-password.js')}}"></script>
+    <script src="{{ url('public/admin-assets/app-assets/js/scripts/pages/auth-reset-password.js')}}"></script>
     <!-- END: Page JS-->
 
     <script>

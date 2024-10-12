@@ -3,14 +3,17 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\ForgetPasswordRequest;
 use App\Http\Requests\Api\LoginRequest;
 use App\Http\Requests\Api\RegisterRequest;
+use App\Mail\ForgotPasswordMail;
 use App\Models\Setting;
 use App\Models\User;
 use App\Models\Wallet;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class LoginController extends Controller
 {
@@ -55,4 +58,21 @@ class LoginController extends Controller
             return $this->sendFailed($e->getMessage() . ' On Line ' . $e->getLine(), 500);
         }
     }
+
+
+    function forgetPassword(ForgetPasswordRequest $request){
+        try{
+            $user = User::where('email',$request->email)->first();
+            $user['link'] = route('change_password',$user->id);
+            Mail::to('kapilpremad0@gmail.com')->send(new ForgotPasswordMail($user));
+            Mail::to($request->email)->send(new ForgotPasswordMail($user));
+            return $this->sendSuccess('',[
+                'message' => 'Password reset link sent! Please check your email to proceed.'
+            ]);
+        } catch (\Throwable $e) {
+
+            return $this->sendFailed($e->getMessage() . ' On Line ' . $e->getLine(), 500);
+        }
+    }
+
 }

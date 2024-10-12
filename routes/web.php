@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\TransactionController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\WinnerController;
 use App\Http\Controllers\Admin\WithdrawlController;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +30,9 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('change_password/{id}',[Controller::class,'changePassword'])->name('change_password');
+Route::post('changePassword',[Controller::class,'StorechangePassword'])->name('storechangePassword');
+
 Route::get('login',[LoginController::class,'login'])->name('login');
 Route::get('logout',[LoginController::class,'logout'])->name('logout');
 
@@ -38,6 +42,7 @@ Route::group(['as' => 'admin.','prefix' => '/admin'], function (){
 
     Route::get('logout',[LoginController::class,'logout'])->name('logout');
     Route::post('check-login',[LoginController::class,'checkLogin'])->name('check_login');
+    
 
     Route::group(['middleware' => 'auth' ], function (){
             Route::get('/',[HomeController::class,'dashboard'])->name('dashboard');

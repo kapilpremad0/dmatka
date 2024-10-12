@@ -31,6 +31,7 @@ Route::post('register',[LoginController::class,'register']);
 Route::post('login',[LoginController::class,'login']);
 Route::get('games',[GameController::class,'index']);
 Route::get('leaderboard',[GameController::class,'leaderboard']);
+Route::post('forgot_password',[LoginController::class,'forgetPassword']);
 
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::apiResource('bids',BidController::class);
