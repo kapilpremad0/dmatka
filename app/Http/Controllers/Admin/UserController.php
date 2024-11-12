@@ -196,7 +196,7 @@ class UserController extends Controller
             $data = Withdraw::find($request->id);
             Wallet::create([
                 'user_id' => $data->user_id,
-                'type' => Wallet::$credit,
+                'type' => Wallet::$debit,
                 'description' => 'Withdrawl request approved',
                 'amount' => $data->amount
             ]);

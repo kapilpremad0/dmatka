@@ -26,16 +26,18 @@ class LoginController extends Controller
             $data['role'] = User::$user;
             if(!empty($request->referral)){
                 $data['referral_from'] = $request->referral;
-                $referral_user = User::where('referral_code',$request->referral)->first();
+                // $referral_user = User::where('referral_code',$request->referral)->first();
+            }
+            $user = User::create($data);
+            if(!empty($request->referral)){
                 Wallet::create([
-                    'user_id' => $referral_user->id,
+                    'user_id' => $user->id,
                     'type'  => Wallet::$credit,
                     'description' => 'You won referral bonus',
                     'amount' => Setting::getReferralBonus(),
                     'type_by' =>Wallet::$referral_bonus,
                 ]);
             }
-            $user = User::create($data);
             return $this->sendSuccess('Register Successfully',$user);
         } catch (\Throwable $e) {
             return $this->sendFailed($e->getMessage() . ' On Line ' . $e->getLine(), 500);

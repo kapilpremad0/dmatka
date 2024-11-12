@@ -98,7 +98,9 @@ class DeclareResultController extends Controller
 
         
         $user = User::with('from_referral')->find($bid->user_id);
-        if(!empty($user->from_referral)){
+        $from_referral = User::where('referral_code',$user->referral_from)->first();
+        
+        if(!empty($from_referral)){
             $referral_commission =  Setting::getReferralCommision();
             $commission_amount = ($price * $referral_commission) / 100;
             Wallet::create([
@@ -106,7 +108,7 @@ class DeclareResultController extends Controller
                 'amount' => $commission_amount,
                 'description' => 'You won commission amount',
                 'type' => Wallet::$credit,
-                'user_id' => $user->id,
+                'user_id' => $from_referral->id,
                 'type_by' => Wallet::$referral_commission,
             ]);
         }
