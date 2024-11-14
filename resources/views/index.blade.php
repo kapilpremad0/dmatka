@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MATKA</title>
+    <title>{{ env('APP_NAME') }}</title>
     <link rel="stylesheet" href="{{ url('public/frontend/css/style.css')}}">
     <link rel="stylesheet" href="{{ url('public/frontend/css/responsive.css')}}">
 
@@ -23,7 +23,7 @@
                         <div class="col-md-6">
                             <h3>Let's Play</h3>
                             <h1>The <span>Games</span><br>and <span>Win</span></h1>
-                            <a href="#">DOWNLOAD APP</a>
+                            <a href="{{ url('public/app-release.apk') }}" download="app-release.apk">DOWNLOAD APP</a>
                         </div>
                         <div class="col-md-6">
                             <img src="{{ url('public/frontend/img/bannerimg.png')}}" alt="">
@@ -68,13 +68,13 @@
                                             </div>
                                             <div class="col-md-5">
                                                 <a href="#">
-                                                    Dubai Market
+                                                    Andheri Market
                                                 </a>
                                                 <p>Winner Number</p>
                                             </div>
-                                            <div class="col-md-4">
+                                            {{-- <div class="col-md-4">
                                                 <span>18</span>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -86,13 +86,13 @@
                                             </div>
                                             <div class="col-md-5">
                                                 <a href="#">
-                                                    Dubai Market
+                                                    Gaziabad
                                                 </a>
                                                 <p>Winner Number</p>
                                             </div>
-                                            <div class="col-md-4">
+                                            {{-- <div class="col-md-4">
                                                 <span>18</span>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -108,13 +108,13 @@
                                             </div>
                                             <div class="col-md-5">
                                                 <a href="#">
-                                                    Dubai Market
+                                                    Faridabad
                                                 </a>
                                                 <p>Winner Number</p>
                                             </div>
-                                            <div class="col-md-4">
+                                            {{-- <div class="col-md-4">
                                                 <span>18</span>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -130,13 +130,13 @@
                                             </div>
                                             <div class="col-md-5">
                                                 <a href="#">
-                                                    Dubai Market
+                                                    Shri Ganesh
                                                 </a>
                                                 <p>Winner Number</p>
                                             </div>
-                                            <div class="col-md-4">
+                                            {{-- <div class="col-md-4">
                                                 <span>18</span>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -148,13 +148,13 @@
                                             </div>
                                             <div class="col-md-5">
                                                 <a href="#">
-                                                    Dubai Market
+                                                    Delhi Market
                                                 </a>
                                                 <p>Winner Number</p>
                                             </div>
-                                            <div class="col-md-4">
+                                            {{-- <div class="col-md-4">
                                                 <span>18</span>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -173,8 +173,8 @@
             <div class="container">
                 <div class="homethree-sec">
                     <div class="homethree-head">
-                        <h3>It's easy to <br><span>Start Playing </span>on D Matka</h3>
-                        <p>D Matka games are easy to understand and easy to play, so many people love <br>to play D Matka online as this is a fascinating game. </p>
+                        <h3>It's easy to <br><span>Start Playing </span>on {{ env('APP_NAME') }}</h3>
+                        <p>{{ env('APP_NAME') }} games are easy to understand and easy to play, so many people love <br>to play {{ env('APP_NAME') }} online as this is a fascinating game. </p>
                     </div>
                     <div class="row">
                         <div class="col-md-4">
@@ -223,12 +223,12 @@
             <div class="container">
                 <div class="homefour-sec">
                     <img src="{{ url('public/frontend/img/fourm.png')}}" alt="">
-                    <h2>About D Matka games</h2>
-                    <p>D Matka games are easy to understand and easy to play, so many people love to play D Matka online as this is a <br>
-                        fascinating game. Live D Matka App is one of the best satta D Matka App and website of india. <br><br>
-                        You may wonder why? well, the list is long.Live D Matka is the only website and application that has live satta <br>
-                        D Matka online play and result fastest D Matka updates it has been very among all tha cities of india as live D <br>
-                        Matka App shows accurate D Matka result and fast updates off all satta D Matka games. 
+                    <h2>About {{ env('APP_NAME') }} games</h2>
+                    <p>{{ env('APP_NAME') }} games are easy to understand and easy to play, so many people love to play {{ env('APP_NAME') }} online as this is a <br>
+                        fascinating game. Live {{ env('APP_NAME') }} App is one of the best satta {{ env('APP_NAME') }} App and website of india. <br><br>
+                        You may wonder why? well, the list is long.Live {{ env('APP_NAME') }} is the only website and application that has live satta <br>
+                        {{ env('APP_NAME') }} online play and result fastest {{ env('APP_NAME') }} updates it has been very among all tha cities of india as live D <br>
+                        Matka App shows accurate {{ env('APP_NAME') }} result and fast updates off all satta {{ env('APP_NAME') }} games. 
                     </p>
                     <button>KNOW MORE <i class="fa-solid fa-arrow-right"></i></button>
                 </div>
@@ -250,13 +250,13 @@
                             <div class="homefive-cmn" style="background-image: url('{{ url('public/frontend/img/homefive-box.png')}}');">
                                 <img src="{{ url('public/frontend/img/homefiveimg.png')}}" alt="">
                                 <div class="text-center">
-                                    <p>Dubai Market</p>
+                                    <p>Andheri Market</p>
                                 </div>
                             </div>
                             <div class="homefive-cmn" style="background-image: url('{{ url('public/frontend/img/homefive-box.png')}}');">
                                 <img src="{{ url('public/frontend/img/homefiveimg.png')}}" alt="">
                                 <div class="text-center">
-                                    <p>Dubai Market</p>
+                                    <p>Gaziabad</p>
                                 </div>
                             </div>
                         </div>
@@ -264,19 +264,19 @@
                             <div class="homefive-cmn" style="background-image: url('{{ url('public/frontend/img/homefive-box.png')}}');">
                                 <img src="{{ url('public/frontend/img/homefiveimg.png')}}" alt="">
                                 <div class="text-center">
-                                    <p>Dubai Market</p>
+                                    <p>Faridabad</p>
                                 </div>
                             </div>
                             <div class="homefive-cmn" style="background-image: url('{{ url('public/frontend/img/homefive-box.png')}}');">
                                 <img src="{{ url('public/frontend/img/homefiveimg.png')}}" alt="">
                                 <div class="text-center">
-                                    <p>Dubai Market</p>
+                                    <p>Shri Gamesh</p>
                                 </div>
                             </div>
                             <div class="homefive-cmn" style="background-image: url('{{ url('public/frontend/img/homefive-box.png')}}');">
                                 <img src="{{ url('public/frontend/img/homefiveimg.png')}}" alt="">
                                 <div class="text-center">
-                                    <p>Dubai Market</p>
+                                    <p>Delhi Market</p>
                                 </div>
                             </div>
                         </div>
@@ -407,7 +407,7 @@
                     <div class="row">
                         <div class="col-md-7">
                             <h3>People love to <br><span>Play & Earn More</span></h3>
-                            <p>D Matka games are easy to understand and easy to play, so many people love <br> to play D Matka online as this is a fascinating game. </p>
+                            <p>{{ env('APP_NAME') }} games are easy to understand and easy to play, so many people love <br> to play {{ env('APP_NAME') }} online as this is a fascinating game. </p>
                         </div>
                         <div class="col-md-5">
                             <div class="homesevan-box">
@@ -530,31 +530,31 @@
                         <div class="accordion-item">
                           <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                                What is DMatka ? 
+                                What is {{ env('APP_NAME') }} ? 
                             </button>
                           </h2>
                           <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body"> DMatka is a Matka company which provides you a platform where you can play games, choose and bet on numbers from 00 to 99 and win a lot of money. </div>
+                            <div class="accordion-body"> {{ env('APP_NAME') }} is a Matka company which provides you a platform where you can play games, choose and bet on numbers from 00 to 99 and win a lot of money. </div>
                           </div>
                         </div>
                         <div class="accordion-item">
                           <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                                Can I actually win money on DMatka ? 
+                                Can I actually win money on {{ env('APP_NAME') }} ? 
                             </button>
                           </h2>
                           <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body"> Yes, it is true. You can win money on DMatka, place bet on n numbers and if your numbers gets declared as a winning number you'll win money. You can win a lot of money on DMatka. </div>
+                            <div class="accordion-body"> Yes, it is true. You can win money on {{ env('APP_NAME') }}, place bet on n numbers and if your numbers gets declared as a winning number you'll win money. You can win a lot of money on {{ env('APP_NAME') }}. </div>
                           </div>
                         </div>
                         <div class="accordion-item">
                           <h2 class="accordion-header">
                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                                Is it safe to add money to DMatka ? 
+                                Is it safe to add money to {{ env('APP_NAME') }} ? 
                             </button>
                           </h2>
                           <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body"> es, it is absolutely safe to put your money indiscriminately inside DMatka. The company assures you that your money will not go anywhere, the more money you win the more money you will get. </div>
+                            <div class="accordion-body"> es, it is absolutely safe to put your money indiscriminately inside {{ env('APP_NAME') }}. The company assures you that your money will not go anywhere, the more money you win the more money you will get. </div>
                           </div>
                         </div>
                       </div>
@@ -571,8 +571,8 @@
                 <div class="footer-sec">
                     <div class="footer-logo">
                         <img src="{{ url('public/frontend/img/footerlogo.png')}}" alt="">
-                        <p>D Matka games are easy to understand and easy to play, so many people love to play D Matka online as this is a fascinating <br>
-                            game. Live D Matka App is one of the best satta D Matka App and website of india.</p>
+                        <p>{{ env('APP_NAME') }} games are easy to understand and easy to play, so many people love to play {{ env('APP_NAME') }} online as this is a fascinating <br>
+                            game. Live {{ env('APP_NAME') }} App is one of the best satta {{ env('APP_NAME') }} App and website of india.</p>
                         <ul>
                             <li><a href="#">About US</a></li>
                             <li><a href="#">How to Play</a></li>
@@ -621,14 +621,14 @@
                     </div>
                     <p>Anyone who wants to show their company results on our website, please contact us on the given below mail ID.</p>
                     <p>जो भी अपनी कंपनी के परिणाम हमारी वेबसाइट पर दिखाना चाहते है कृपया निचे दी गयी ईमेल आईडी पर संपर्क करे |</p>
-                    <strong>Contact Us: info@dmatka.com</strong>
+                    <strong>Contact Us: info@{{ env('APP_NAME') }}.com</strong>
                     <hr>
                     <div class="row">
                         <div class="col-md-8">
                             <p>The game involves an element of financial risk and may be addictive. Please play at your own risk. <br>The game is applicable for people above 18 only.</p>
                         </div>
                         <div class="col-md-4 text-end">
-                            <p>All Right Reserved | 2019 © DMatka Game</p>
+                            <p>All Right Reserved | 2019 © {{ env('APP_NAME') }} Game</p>
                         </div>
                     </div>
                     <br>
