@@ -46,8 +46,13 @@ class HomeController extends Controller
                 'referral_bonus' => $settings->where('key',Setting::$referral_bonus)->first()->value ?? 0,
                 'min_withdraw_amount' => $settings->where('key',Setting::$min_withdraw_amount)->first()->value ?? 0,
                 
-                'total_referral_count' => Wallet::where('user_id',auth()->user()->id)->where('type_by',Wallet::$referral_commission)->sum('amount'),
-                'total_referral_won' => Wallet::where('user_id',auth()->user()->id)->where('type_by',Wallet::$referral_commission)->count(),
+                'total_referral_count' => Wallet::where('user_id',auth()->user()->id)
+                                        ->where('type_by',Wallet::$referral_commission)
+                                        ->count(),
+
+                'total_referral_won' => Wallet::where('user_id',auth()->user()->id)
+                                        ->where('type_by',Wallet::$referral_commission)
+                                        ->sum('amount'),
             ];
 
             $home_banner = $settings->where('key',Setting::$home_banner)->first()->value ?? 'chit.jpg';
